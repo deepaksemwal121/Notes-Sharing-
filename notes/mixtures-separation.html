@@ -1,0 +1,375 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--color-background-primary);color:var(--color-text-primary);}
+.page{padding:18px 20px 24px;}
+.hdr{text-align:center;padding-bottom:14px;margin-bottom:18px;border-bottom:1.5px dashed #9FE1CB;}
+.hdr .chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;}
+.chip{font-size:10.5px;font-weight:700;padding:3px 11px;border-radius:20px;letter-spacing:.3px;background:#E1F5EE;color:#085041;border:1px solid #5DCAA5;}
+.chip.b{background:#E6F1FB;color:#0C447C;border-color:#85B7EB;}
+.hdr h1{font-size:22px;font-weight:800;color:var(--color-text-primary);line-height:1.2;}
+.hdr p{font-size:12px;color:var(--color-text-secondary);margin-top:3px;}
+
+.sec-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--color-text-secondary);margin:16px 0 8px;padding-left:2px;}
+
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:12px;}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:12px;}
+.g1{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:12px;}
+
+.card{border-radius:10px;padding:12px 14px;border:1px solid;}
+.card .ct{font-size:13px;font-weight:700;margin-bottom:9px;display:flex;align-items:center;gap:6px;}
+.card .ct .ico{width:20px;height:20px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;font-weight:800;}
+.row{display:flex;align-items:flex-start;gap:6px;margin-bottom:6px;font-size:11.5px;line-height:1.45;}
+.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+.sub{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;opacity:.65;margin:8px 0 5px;}
+.tag{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:12px;margin:2px 2px 2px 0;}
+.ex{font-style:italic;opacity:.8;}
+
+.blue-c{background:#E6F1FB;border-color:#85B7EB;}
+.blue-c .ct{color:#042C53;}
+.blue-c .ico{background:#378ADD;color:#fff;}
+.blue-c .dot{background:#185FA5;}
+.blue-c .tag{background:#B5D4F4;color:#042C53;}
+.blue-c .sub{color:#185FA5;}
+
+.teal-c{background:#E1F5EE;border-color:#5DCAA5;}
+.teal-c .ct{color:#04342C;}
+.teal-c .ico{background:#1D9E75;color:#fff;}
+.teal-c .dot{background:#0F6E56;}
+.teal-c .tag{background:#9FE1CB;color:#04342C;}
+.teal-c .sub{color:#0F6E56;}
+
+.amber-c{background:#FAEEDA;border-color:#EF9F27;}
+.amber-c .ct{color:#412402;}
+.amber-c .ico{background:#BA7517;color:#fff;}
+.amber-c .dot{background:#854F0B;}
+.amber-c .tag{background:#FAC775;color:#412402;}
+.amber-c .sub{color:#854F0B;}
+
+.purple-c{background:#EEEDFE;border-color:#AFA9EC;}
+.purple-c .ct{color:#26215C;}
+.purple-c .ico{background:#534AB7;color:#fff;}
+.purple-c .dot{background:#3C3489;}
+.purple-c .tag{background:#CECBF6;color:#26215C;}
+.purple-c .sub{color:#3C3489;}
+
+.coral-c{background:#FAECE7;border-color:#F0997B;}
+.coral-c .ct{color:#4A1B0C;}
+.coral-c .ico{background:#D85A30;color:#fff;}
+.coral-c .dot{background:#993C1D;}
+.coral-c .tag{background:#F5C4B3;color:#4A1B0C;}
+.coral-c .sub{color:#993C1D;}
+
+.green-c{background:#EAF3DE;border-color:#97C459;}
+.green-c .ct{color:#173404;}
+.green-c .ico{background:#639922;color:#fff;}
+.green-c .dot{background:#3B6D11;}
+.green-c .tag{background:#C0DD97;color:#173404;}
+.green-c .sub{color:#3B6D11;}
+
+.pink-c{background:#FBEAF0;border-color:#ED93B1;}
+.pink-c .ct{color:#4B1528;}
+.pink-c .ico{background:#D4537E;color:#fff;}
+.pink-c .dot{background:#993556;}
+.pink-c .tag{background:#F4C0D1;color:#4B1528;}
+.pink-c .sub{color:#993556;}
+
+.centre{background:var(--color-background-secondary);border:1.5px solid var(--color-border-secondary);border-radius:12px;padding:14px 18px;text-align:center;margin-bottom:14px;}
+.centre h2{font-size:18px;font-weight:800;color:var(--color-text-primary);margin-bottom:6px;}
+.centre p{font-size:12px;color:var(--color-text-secondary);line-height:1.5;}
+.centre .tags{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:10px;}
+.centre .ctag{font-size:10.5px;font-weight:700;padding:3px 10px;border-radius:12px;background:var(--color-background-primary);color:var(--color-text-secondary);border:0.5px solid var(--color-border-secondary);}
+
+.formula-box{background:var(--color-background-primary);border-radius:7px;padding:7px 10px;margin:6px 0;font-size:11.5px;font-weight:700;text-align:center;border:0.5px solid var(--color-border-secondary);}
+
+.comp-table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;}
+.comp-table th{padding:4px 6px;text-align:center;font-size:10px;font-weight:700;border-bottom:1px solid #AFA9EC;color:#26215C;background:#EEEDFE;}
+.comp-table th:first-child{text-align:left;}
+.comp-table td{padding:4px 6px;border-bottom:1px solid #EEEDFE;color:var(--color-text-primary);}
+.comp-table td:first-child{color:var(--color-text-secondary);font-weight:700;font-size:10.5px;}
+.comp-table td:not(:first-child){text-align:center;color:#534AB7;}
+
+.sep-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:8px;}
+.sep-chip{background:var(--color-background-primary);border:0.5px solid #EF9F27;border-radius:8px;padding:8px 9px;}
+.sep-chip .sm{font-size:11.5px;font-weight:700;color:#633806;margin-bottom:3px;}
+.sep-chip .sd{font-size:10.5px;color:var(--color-text-secondary);line-height:1.3;}
+.sep-chip .se{font-size:10px;font-style:italic;color:#854F0B;margin-top:3px;}
+
+.footer{margin-top:18px;padding-top:12px;border-top:1.5px dashed #D3D1C7;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.footer span{font-size:11px;color:var(--color-text-secondary);}
+.pbtn{background:#185FA5;color:#fff;border:none;border-radius:7px;padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;}
+.pbtn:hover{background:#0C447C;}
+@media print{.pbtn{display:none;}.page{padding:6px;}}
+</style>
+
+<div class="page">
+
+<div class="hdr">
+  <h1>Is Matter Around Us Pure? + Exploring Mixtures</h1>
+</div>
+
+<div class="centre">
+  <h2>Matter</h2>
+  <p>Anything that has mass and occupies space. Classified by <strong>chemical composition</strong>.</p>
+  <div class="tags">
+    <span class="ctag">Pure substance</span>
+    <span class="ctag">Mixture</span>
+    <span class="ctag">Element</span>
+    <span class="ctag">Compound</span>
+    <span class="ctag">Homogeneous</span>
+    <span class="ctag">Heterogeneous</span>
+  </div>
+</div>
+
+<div class="sec-label">Pure substances</div>
+<div class="g2">
+  <div class="card blue-c">
+    <div class="ct"><div class="ico">E</div>Element</div>
+    <div class="row"><div class="dot"></div><span>Made of one kind of atom only. Cannot be broken down by chemical reactions.</span></div>
+    <div class="sub">Metals</div>
+    <div class="row"><div class="dot"></div><span>Lustrous, malleable, ductile, conduct heat &amp; electricity, sonorous. <span class="ex">E.g. Gold, Silver, Copper, Iron, Sodium</span></span></div>
+    <div class="row"><div class="dot"></div><span>Mercury is the only metal liquid at room temperature.</span></div>
+    <div class="sub">Non-metals</div>
+    <div class="row"><div class="dot"></div><span>Poor conductors, not lustrous/malleable. <span class="ex">E.g. Oxygen, Hydrogen, Iodine, Carbon, Bromine, Chlorine</span></span></div>
+    <div class="sub">Metalloids</div>
+    <div class="row"><div class="dot"></div><span>Intermediate properties. <span class="ex">E.g. Boron, Silicon, Germanium</span></span></div>
+    <div class="row"><div class="dot"></div><span>92 naturally occurring elements; 11 gases at room temp; 2 liquids (Hg, Br).</span></div>
+  </div>
+
+  <div class="card blue-c">
+    <div class="ct"><div class="ico">C</div>Compound</div>
+    <div class="row"><div class="dot"></div><span>Two or more elements chemically combined in a <strong>fixed ratio</strong> by mass.</span></div>
+    <div class="row"><div class="dot"></div><span>Properties are <strong>totally different</strong> from constituent elements.</span></div>
+    <div class="row"><div class="dot"></div><span>Separated only by chemical or electrochemical reactions — not physical methods.</span></div>
+    <div class="sub">Examples</div>
+    <div class="row"><div class="dot"></div><span><span class="tag">Water (H₂O)</span> H:O = 1:8 by mass always — fixed ratio</span></div>
+    <div class="row"><div class="dot"></div><span><span class="tag">Salt (NaCl)</span> Sodium chloride — table salt</span></div>
+    <div class="row"><div class="dot"></div><span><span class="tag">Sugar (C₁₂H₂₂O₁₁)</span> Sucrose — fixed composition</span></div>
+    <div class="row"><div class="dot"></div><span><span class="tag">Iron sulphide (FeS)</span> Formed when Fe + S heated together — smells like rotten eggs with HCl</span></div>
+    <div class="row"><div class="dot"></div><span>Mixture of Fe + S: magnetic, Fe dissolves in CS₂. Compound FeS: not magnetic, H₂S gas with HCl.</span></div>
+  </div>
+</div>
+
+<div class="sec-label">Types of mixtures</div>
+<div class="g3">
+  <div class="card teal-c">
+    <div class="ct"><div class="ico">S</div>Solution (homogeneous)</div>
+    <div class="row"><div class="dot"></div><span>Uniform composition throughout — same taste in first &amp; last sip of lemonade.</span></div>
+    <div class="sub">Solute + Solvent</div>
+    <div class="row"><div class="dot"></div><span><span class="tag">Solute</span> dissolved substance (less). <span class="ex">E.g. sugar, salt</span></span></div>
+    <div class="row"><div class="dot"></div><span><span class="tag">Solvent</span> does the dissolving (more). <span class="ex">E.g. water, alcohol</span></span></div>
+    <div class="sub">Properties</div>
+    <div class="row"><div class="dot"></div><span>Particles &lt;1 nm — not visible to naked eye</span></div>
+    <div class="row"><div class="dot"></div><span>Does not scatter light — no Tyndall effect</span></div>
+    <div class="row"><div class="dot"></div><span>Cannot be filtered; does not settle</span></div>
+    <div class="sub">examples</div>
+    <div class="row"><div class="dot"></div><span>Sugar in water, salt in water, tincture of iodine (iodine in alcohol), soda water (CO₂ in water), air (gaseous solution), alloys (solid solution)</span></div>
+  </div>
+
+  <div class="card teal-c">
+    <div class="ct"><div class="ico">C</div>Colloid (heterogeneous)</div>
+    <div class="row"><div class="dot"></div><span>Appears homogeneous but is actually heterogeneous. Particles 1–1000 nm.</span></div>
+    <div class="sub">Properties</div>
+    <div class="row"><div class="dot"></div><span>Scatters light — <strong>Tyndall effect visible</strong></span></div>
+    <div class="row"><div class="dot"></div><span>Does not settle; cannot be filtered</span></div>
+    <div class="row"><div class="dot"></div><span>Separated by centrifugation</span></div>
+    <div class="sub">Tyndall effect</div>
+    <div class="row"><div class="dot"></div><span>Scattering of beam of light by colloid particles. Sunlight through forest canopy, floodlights in stadium.</span></div>
+    <div class="sub">examples</div>
+    <div class="row"><div class="dot"></div><span>Milk, blood, fog, smoke, jelly, shaving cream, butter, ice cream, tomato sauce</span></div>
+    <div class="sub">Components</div>
+    <div class="row"><div class="dot"></div><span><span class="tag">Dispersed phase</span> + <span class="tag">Dispersion medium</span></span></div>
+  </div>
+
+  <div class="card teal-c">
+    <div class="ct"><div class="ico">Su</div>Suspension (heterogeneous)</div>
+    <div class="row"><div class="dot"></div><span>Solids dispersed in liquids but do not dissolve. Particles &gt;1000 nm.</span></div>
+    <div class="sub">Properties</div>
+    <div class="row"><div class="dot"></div><span>Visible to naked eye</span></div>
+    <div class="row"><div class="dot"></div><span>Scatters light — Tyndall effect visible</span></div>
+    <div class="row"><div class="dot"></div><span>Settles on standing — unstable</span></div>
+    <div class="row"><div class="dot"></div><span>Can be separated by filtration</span></div>
+    <div class="sub">examples</div>
+    <div class="row"><div class="dot"></div><span>Chalk + water, muddy water, flour in water, sand in water, sawdust in water</span></div>
+    <div class="sub">Coagulation (Ch 5)</div>
+    <div class="row"><div class="dot"></div><span>Alum (fitkari) added to muddy water causes suspended particles to clump and settle. Lemon juice/vinegar coagulates milk to make paneer.</span></div>
+  </div>
+</div>
+
+<div class="sec-label">Comparison table — solution vs colloid vs suspension</div>
+<div class="card purple-c" style="margin-bottom:12px;">
+  <table class="comp-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Solution</th>
+        <th>Colloid</th>
+        <th>Suspension</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Particle size</td><td>&lt;1 nm</td><td>1–1000 nm</td><td>&gt;1000 nm</td></tr>
+      <tr><td>Visible to eye</td><td>No</td><td>No</td><td>Yes</td></tr>
+      <tr><td>Tyndall effect</td><td>No</td><td>Yes</td><td>Yes</td></tr>
+      <tr><td>Settles</td><td>No</td><td>No</td><td>Yes</td></tr>
+      <tr><td>Filterable</td><td>No</td><td>No</td><td>Yes</td></tr>
+      <tr><td>Nature</td><td>Homogeneous</td><td>Heterogeneous</td><td>Heterogeneous</td></tr>
+      <tr><td>Example</td><td>Salt water</td><td>Milk</td><td>Muddy water</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="sec-label">Concentration of a solution (Ch 2 + Ch 5)</div>
+<div class="g2" style="margin-bottom:12px;">
+  <div class="card coral-c">
+    <div class="ct"><div class="ico">%</div>Expressing concentration</div>
+    <div class="sub">Mass by mass % (% m/m)</div>
+    <div class="formula-box">Conc. = (Mass of solute / Mass of solution) × 100</div>
+    <div class="row"><div class="dot"></div><span><span class="ex">E.g. 40g salt in 320g water → 40/360 × 100 = 11.1%</span></span></div>
+    <div class="sub">Mass by volume % (% m/v)</div>
+    <div class="formula-box">= (Mass of solute / Volume of solution) × 100</div>
+    <div class="row"><div class="dot"></div><span><span class="ex">E.g. 5% glucose IV drip = 5g glucose per 100 mL solution</span></span></div>
+    <div class="sub">Volume by volume % (% v/v)</div>
+    <div class="formula-box">= (Volume of solute / Volume of solution) × 100</div>
+    <div class="row"><div class="dot"></div><span><span class="ex">E.g. Vinegar = 5% v/v acetic acid; perfumes</span></span></div>
+  </div>
+
+  <div class="card coral-c">
+    <div class="ct"><div class="ico">S</div>Solubility</div>
+    <div class="row"><div class="dot"></div><span>Max amount of solute that dissolves in fixed solvent at a given temperature.</span></div>
+    <div class="sub">Types of solutions</div>
+    <div class="row"><div class="dot"></div><span><span class="tag">Saturated</span> No more solute dissolves at given temp</span></div>
+    <div class="row"><div class="dot"></div><span><span class="tag">Unsaturated</span> Can dissolve more solute</span></div>
+    <div class="row"><div class="dot"></div><span><span class="tag">Dilute</span> Small amount of solute (comparative)</span></div>
+    <div class="row"><div class="dot"></div><span><span class="tag">Concentrated</span> Large amount of solute (comparative)</span></div>
+    <div class="sub">Effect of temperature</div>
+    <div class="row"><div class="dot"></div><span>Solids in liquid: solubility <strong>increases</strong> with temperature.</span></div>
+    <div class="row"><div class="dot"></div><span>Gases in liquid: solubility <strong>decreases</strong> with temperature.</span></div>
+    <div class="row"><div class="dot"></div><span><span class="ex">Real example: 0.9% m/v NaCl saline drip used in hospitals — replaces lost fluids safely.</span></span></div>
+  </div>
+</div>
+
+<div class="sec-label">Separation techniques (Ch 2 · section 2.3 + Ch 5 · sections 5.3 & 5.4)</div>
+<div class="card amber-c" style="margin-bottom:12px;">
+  <div class="ct"><div class="ico">↕</div>Separation of homogeneous mixtures</div>
+  <div class="sep-grid">
+    <div class="sep-chip">
+      <div class="sm">Evaporation</div>
+      <div class="sd">Removes volatile solvent; non-volatile solute stays.</div>
+      <div class="se">Ink on watch glass → dye stays, water evaporates</div>
+    </div>
+    <div class="sep-chip">
+      <div class="sm">Crystallisation</div>
+      <div class="sd">Saturated solution cooled slowly → pure crystals form. Better than simple evaporation (sugar may char).</div>
+      <div class="se">Copper sulphate crystals; sea salt purification; mishri (candy sugar)</div>
+    </div>
+    <div class="sep-chip">
+      <div class="sm">Distillation</div>
+      <div class="sd">Separate miscible liquids with boiling point difference ≥25°C. Vapour → condenser → pure liquid.</div>
+      <div class="se">Acetone (56°C) from water (100°C); Mitti ka Ittar — Kannauj, UP (Deg-Bhapka method)</div>
+    </div>
+    <div class="sep-chip">
+      <div class="sm">Fractional distillation</div>
+      <div class="sd">Boiling point difference &lt;25°C. Fractionating column of glass beads used.</div>
+      <div class="se">Air → N₂ (−196°C), Ar (−186°C), O₂ (−183°C); crude petroleum refining → petrol, diesel, kerosene</div>
+    </div>
+    <div class="sep-chip">
+      <div class="sm">Paper chromatography</div>
+      <div class="sd">Separates solutes dissolved in same solvent. Components travel at different speeds on paper. From Greek: chroma = colour.</div>
+      <div class="se">Dyes in black ink, pigments from spinach leaves, drugs from blood</div>
+    </div>
+  </div>
+</div>
+
+<div class="card amber-c" style="margin-bottom:12px;">
+  <div class="ct"><div class="ico">↕</div>Separation of heterogeneous mixtures</div>
+  <div class="sep-grid">
+    <div class="sep-chip">
+      <div class="sm">Separating funnel</div>
+      <div class="sd">Immiscible liquids form separate layers by density. Lower layer drained through stopcock.</div>
+      <div class="se">Kerosene/mustard oil above water; iron extraction — slag removed from molten iron</div>
+    </div>
+    <div class="sep-chip">
+      <div class="sm">Sublimation</div>
+      <div class="sd">Solid → vapour directly (below melting point), bypassing liquid. Vapour cools → deposition.</div>
+      <div class="se">Ammonium chloride + salt ; camphor + sand; naphthalene; dry ice (CO₂)</div>
+    </div>
+    <div class="sep-chip">
+      <div class="sm">Filtration</div>
+      <div class="sd">Insoluble solid separated from liquid using filter paper.</div>
+      <div class="se">Mud from water; removing impurities before crystallisation</div>
+    </div>
+    <div class="sep-chip">
+      <div class="sm">Magnetic separation</div>
+      <div class="sd">Magnetic material attracted to magnet; non-magnetic stays.</div>
+      <div class="se">Iron filings from sulphur powder </div>
+    </div>
+    <div class="sep-chip">
+      <div class="sm">Coagulation</div>
+      <div class="sd">Coagulant causes fine suspended particles to clump together → settle (sedimentation) → filtered.</div>
+      <div class="se">Alum (fitkari) in muddy water; lemon juice/vinegar to make paneer from milk</div>
+    </div>
+    <div class="sep-chip">
+      <div class="sm">Centrifugation</div>
+      <div class="sd">High-speed spinning — denser particles to bottom, lighter on top.</div>
+      <div class="se">Cream from milk; blood components (plasma, RBC, WBC); urine tests; washing machines</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label">Physical vs chemical changes </div>
+<div class="g2" style="margin-bottom:12px;">
+  <div class="card green-c">
+    <div class="ct"><div class="ico">P</div>Physical change</div>
+    <div class="row"><div class="dot"></div><span>No change in chemical composition or nature of substance.</span></div>
+    <div class="row"><div class="dot"></div><span>Interconversion of states: ice ↔ water ↔ steam — chemically identical throughout.</span></div>
+    <div class="row"><div class="dot"></div><span>Properties changed: colour, shape, size — not chemical nature.</span></div>
+    <div class="sub">Examples</div>
+    <div class="row"><div class="dot"></div><span>Melting butter, boiling water, dissolving salt in water, making fruit salad, cutting trees, mixing iron filings + sand</span></div>
+  </div>
+  <div class="card green-c">
+    <div class="ct"><div class="ico">C</div>Chemical change (reaction)</div>
+    <div class="row"><div class="dot"></div><span>New substance(s) formed with different chemical properties. Also called a chemical reaction.</span></div>
+    <div class="row"><div class="dot"></div><span>One substance reacts with another — change in chemical composition.</span></div>
+    <div class="sub">Examples</div>
+    <div class="row"><div class="dot"></div><span>Rusting of iron, cooking food, digestion of food, burning paper/wood/candle, passing electricity through water (→ H₂ + O₂), Fe + S heated → FeS)</span></div>
+  </div>
+</div>
+
+<div class="sec-label">Alloys — special case (homogeneous mixture)</div>
+<div class="card pink-c" style="margin-bottom:12px;">
+  <div class="ct"><div class="ico">A</div>Alloys</div>
+  <div class="row"><div class="dot"></div><span>Homogeneous mixture of two or more metals (or metal + non-metal). Cannot be separated by physical methods — yet treated as mixture because properties of constituents are retained and composition is variable.</span></div>
+  <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:8px;">
+    <span class="tag">Brass = ~80% Cu + 20% Zn</span>
+    <span class="tag">Bronze = ~80% Cu + 20% Sn</span>
+    <span class="tag">Stainless steel = Fe + C + Cr + Ni + Mo</span>
+    <span class="tag">Solder = Pb + Sn</span>
+  </div>
+</div>
+
+<div class="sec-label">Exam tips</div>
+<div class="card purple-c" style="margin-bottom:12px;">
+  <div class="ct"><div class="ico">!</div>Key points to remember</div>
+  <div class="g2" style="margin-top:4px;margin-bottom:0;">
+    <div>
+      <div class="row"><div class="dot"></div><span>Homogeneous mixture can have variable composition</span></div>
+      <div class="row"><div class="dot"></div><span>Air = homogeneous mixture: N₂ 78%, O₂ 21%, Ar 0.9%. Not a compound.</span></div>
+      <div class="row"><div class="dot"></div><span>Tyndall effect test to identify colloid — milk shows it, copper sulphate solution does not</span></div>
+      <div class="row"><div class="dot"></div><span>Paperfuge — hand-powered centrifuge from cardboard disc; detects malaria/anaemia in remote areas</span></div>
+    </div>
+    <div>
+      <div class="row"><div class="dot"></div><span>Pure substance has sharp, fixed boiling/melting point. Mixture does not.</span></div>
+      <div class="row"><div class="dot"></div><span>Crystallisation preferred over evaporation when sugar/substance may char on direct heating, or impurities remain in solution.</span></div>
+      <div class="row"><div class="dot"></div><span>ORS (Oral Rehydration Solution) — exact concentration critical; too little/too much pesticide damages crops — concentration matters in real life.</span></div>
+      <div class="row"><div class="dot"></div><span>Blood = colloid (not suspension) — cells invisible to naked eye; separated by centrifugation into plasma, platelets, WBC, RBC.</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <span>Notes By Deepak Sir</span>
+  <button class="pbtn" onclick="window.print()">Print / Save PDF</button>
+</div>
+</div>

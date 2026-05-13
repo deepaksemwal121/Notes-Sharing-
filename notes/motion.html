@@ -1,0 +1,401 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--color-background-primary);color:var(--color-text-primary);}
+.page{padding:18px 20px 24px;}
+.hdr{text-align:center;padding-bottom:14px;margin-bottom:18px;border-bottom:1.5px dashed #9FE1CB;}
+.hdr .chip{display:inline-block;font-size:10.5px;font-weight:700;padding:3px 11px;border-radius:20px;background:#E6F1FB;color:#0C447C;border:1px solid #85B7EB;margin-bottom:8px;}
+.hdr h1{font-size:22px;font-weight:800;color:var(--color-text-primary);}
+.hdr p{font-size:12px;color:var(--color-text-secondary);margin-top:3px;}
+.sec-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--color-text-secondary);margin:16px 0 8px;}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:12px;}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:12px;}
+.g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:12px;}
+.card{border-radius:10px;padding:12px 14px;border:1px solid;}
+.ct{font-size:13px;font-weight:700;margin-bottom:9px;display:flex;align-items:center;gap:6px;}
+.ico{width:20px;height:20px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;font-weight:800;}
+.row{display:flex;align-items:flex-start;gap:6px;margin-bottom:6px;font-size:11.5px;line-height:1.45;}
+.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+.sub{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;opacity:.65;margin:8px 0 5px;}
+.tag{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:12px;margin:2px 2px 2px 0;}
+.fbox{border-radius:7px;padding:7px 12px;font-size:12px;font-weight:700;text-align:center;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);margin:5px 0;letter-spacing:.3px;}
+
+.blue-c{background:#E6F1FB;border-color:#85B7EB;}
+.blue-c .ct{color:#042C53;} .blue-c .ico{background:#378ADD;color:#fff;} .blue-c .dot{background:#185FA5;} .blue-c .tag{background:#B5D4F4;color:#042C53;} .blue-c .sub{color:#185FA5;}
+.teal-c{background:#E1F5EE;border-color:#5DCAA5;}
+.teal-c .ct{color:#04342C;} .teal-c .ico{background:#1D9E75;color:#fff;} .teal-c .dot{background:#0F6E56;} .teal-c .tag{background:#9FE1CB;color:#04342C;} .teal-c .sub{color:#0F6E56;}
+.amber-c{background:#FAEEDA;border-color:#EF9F27;}
+.amber-c .ct{color:#412402;} .amber-c .ico{background:#BA7517;color:#fff;} .amber-c .dot{background:#854F0B;} .amber-c .tag{background:#FAC775;color:#412402;} .amber-c .sub{color:#854F0B;}
+.purple-c{background:#EEEDFE;border-color:#AFA9EC;}
+.purple-c .ct{color:#26215C;} .purple-c .ico{background:#534AB7;color:#fff;} .purple-c .dot{background:#3C3489;} .purple-c .tag{background:#CECBF6;color:#26215C;} .purple-c .sub{color:#3C3489;}
+.coral-c{background:#FAECE7;border-color:#F0997B;}
+.coral-c .ct{color:#4A1B0C;} .coral-c .ico{background:#D85A30;color:#fff;} .coral-c .dot{background:#993C1D;} .coral-c .tag{background:#F5C4B3;color:#4A1B0C;} .coral-c .sub{color:#993C1D;}
+.green-c{background:#EAF3DE;border-color:#97C459;}
+.green-c .ct{color:#173404;} .green-c .ico{background:#639922;color:#fff;} .green-c .dot{background:#3B6D11;} .green-c .tag{background:#C0DD97;color:#173404;} .green-c .sub{color:#3B6D11;}
+.pink-c{background:#FBEAF0;border-color:#ED93B1;}
+.pink-c .ct{color:#4B1528;} .pink-c .ico{background:#D4537E;color:#fff;} .pink-c .dot{background:#993556;} .pink-c .tag{background:#F4C0D1;color:#4B1528;} .pink-c .sub{color:#993556;}
+
+.centre{background:var(--color-background-secondary);border:1.5px solid var(--color-border-secondary);border-radius:12px;padding:14px 18px;text-align:center;margin-bottom:14px;}
+.centre h2{font-size:18px;font-weight:800;color:var(--color-text-primary);margin-bottom:5px;}
+.centre p{font-size:12px;color:var(--color-text-secondary);line-height:1.5;}
+.centre .tags{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:10px;}
+.centre .ctag{font-size:10.5px;font-weight:700;padding:3px 10px;border-radius:12px;background:var(--color-background-primary);color:var(--color-text-secondary);border:0.5px solid var(--color-border-secondary);}
+
+.eqn-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:8px;}
+.eqn-box{background:var(--color-background-primary);border:0.5px solid #AFA9EC;border-radius:8px;padding:9px 10px;text-align:center;}
+.eqn-box .elabel{font-size:10px;font-weight:700;color:#534AB7;margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px;}
+.eqn-box .eform{font-size:13px;font-weight:800;color:#26215C;font-family:monospace;}
+
+.graph-wrap{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:10px 12px;margin-bottom:6px;}
+.graph-wrap .gl{font-size:11px;font-weight:700;color:var(--color-text-secondary);margin-bottom:6px;text-align:center;}
+
+svg.g{overflow:visible;}
+.ax{stroke:var(--color-text-secondary);stroke-width:1.2;fill:none;}
+.ax-lbl{font-size:9px;fill:var(--color-text-secondary);font-family:'Nunito',sans-serif;}
+.gline{stroke-width:2;fill:none;}
+.gfill{opacity:.18;}
+.glbl{font-size:9.5px;font-family:'Nunito',sans-serif;font-weight:700;}
+
+.scalar-vector{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:10px;overflow:hidden;border:1px solid #AFA9EC;margin-bottom:12px;}
+.sv-col{padding:12px 14px;}
+.sv-col:first-child{background:#EEEDFE;border-right:1px solid #AFA9EC;}
+.sv-col:last-child{background:#E1F5EE;}
+.sv-col h3{font-size:12px;font-weight:800;margin-bottom:8px;}
+.sv-col:first-child h3{color:#26215C;}
+.sv-col:last-child h3{color:#04342C;}
+.sv-col .row{font-size:11px;}
+.sv-col.purple .dot{background:#3C3489;}
+.sv-col.teal .dot{background:#0F6E56;}
+
+.footer{margin-top:18px;padding-top:12px;border-top:1.5px dashed #D3D1C7;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.footer span{font-size:11px;color:var(--color-text-secondary);}
+.pbtn{background:#185FA5;color:#fff;border:none;border-radius:7px;padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;}
+.pbtn:hover{background:#0C447C;}
+@media print{.pbtn{display:none;}.page{padding:6px;}}
+</style>
+
+<div class="page">
+<h2 class="sr-only" style="text-align: center;"> 
+  Motion — complete mind map covering types of motion, distance, displacement, speed, velocity, acceleration, equations of motion, graphs, and uniform circular motion </h2>
+
+<div class="hdr">
+
+<div class="centre">
+  <h2>Motion</h2>
+  <p>An object is said to be in motion when it changes its position relative to a <strong>reference point</strong>.<br>Rest and motion are <strong>relative</strong> in nature.</p>
+  <div class="tags">
+    <span class="ctag">Distance &amp; Displacement</span>
+    <span class="ctag">Speed &amp; Velocity</span>
+    <span class="ctag">Acceleration</span>
+    <span class="ctag">Equations of motion</span>
+    <span class="ctag">Graphs</span>
+    <span class="ctag">Uniform circular motion</span>
+  </div>
+</div>
+
+<div class="sec-label">Types of motion</div>
+<div class="g4" style="margin-bottom:12px;">
+  <div class="card blue-c" style="padding:10px 12px;">
+    <div class="ct" style="margin-bottom:5px;"><div class="ico">R</div>Random motion</div>
+    <div class="row"><div class="dot"></div><span style="font-size:11px;">Irregular path, no fixed direction. E.g. motion of gas molecules, flying insects.</span></div>
+  </div>
+  <div class="card blue-c" style="padding:10px 12px;">
+    <div class="ct" style="margin-bottom:5px;"><div class="ico">T</div>Translational</div>
+    <div class="row"><div class="dot"></div><span style="font-size:11px;">Body moves from one point to another in a straight line. E.g. car on highway.</span></div>
+  </div>
+  <div class="card blue-c" style="padding:10px 12px;">
+    <div class="ct" style="margin-bottom:5px;"><div class="ico">O</div>Oscillatory</div>
+    <div class="row"><div class="dot"></div><span style="font-size:11px;">Body moves to and fro about a fixed point. E.g. pendulum of a clock.</span></div>
+  </div>
+  <div class="card blue-c" style="padding:10px 12px;">
+    <div class="ct" style="margin-bottom:5px;"><div class="ico">C</div>Circular</div>
+    <div class="row"><div class="dot"></div><span style="font-size:11px;">Body moves along a circular path. E.g. Earth around Sun, fan blades.</span></div>
+  </div>
+</div>
+
+<div class="sec-label">Scalar vs vector quantities</div>
+<div class="scalar-vector" style="margin-bottom:12px;">
+  <div class="sv-col purple">
+    <h3>Scalar quantity</h3>
+    <div class="row"><div class="dot" style="background:#3C3489;margin-top:4px;"></div><span style="font-size:11px;">Has magnitude and unit only — no direction.</span></div>
+    <div class="row"><div class="dot" style="background:#3C3489;margin-top:4px;"></div><span style="font-size:11px;"><strong>Examples:</strong> Distance, Speed, Work, Time, Mass</span></div>
+  </div>
+  <div class="sv-col teal">
+    <h3>Vector quantity</h3>
+    <div class="row"><div class="dot" style="background:#0F6E56;margin-top:4px;"></div><span style="font-size:11px;">Has magnitude, unit <em>and</em> direction.</span></div>
+    <div class="row"><div class="dot" style="background:#0F6E56;margin-top:4px;"></div><span style="font-size:11px;"><strong>Examples:</strong> Displacement, Velocity, Acceleration, Force</span></div>
+  </div>
+</div>
+
+<div class="sec-label">Distance &amp; displacement</div>
+<div class="g2">
+  <div class="card teal-c">
+    <div class="ct"><div class="ico">D</div>Distance</div>
+    <div class="row"><div class="dot"></div><span>Actual path length travelled between two points.</span></div>
+    <div class="row"><div class="dot"></div><span><span class="tag">Scalar</span> — has magnitude only, no direction.</span></div>
+    <div class="row"><div class="dot"></div><span>SI unit: <strong>metre (m)</strong></span></div>
+    <div class="row"><div class="dot"></div><span>Distance is always ≥ displacement. Never negative.</span></div>
+  </div>
+  <div class="card teal-c">
+    <div class="ct"><div class="ico">S</div>Displacement</div>
+    <div class="row"><div class="dot"></div><span>Shortest straight-line distance joining initial and final positions, with direction.</span></div>
+    <div class="row"><div class="dot"></div><span><span class="tag">Vector</span> — has magnitude and direction.</span></div>
+    <div class="row"><div class="dot"></div><span>SI unit: <strong>metre (m)</strong></span></div>
+    <div class="row"><div class="dot"></div><span>Can be zero, positive or negative. E.g. if you walk 100 m and return to same point, displacement = 0 but distance = 200 m.</span></div>
+  </div>
+</div>
+
+<div class="sec-label">Speed &amp; velocity</div>
+<div class="g2">
+  <div class="card amber-c">
+    <div class="ct"><div class="ico">v</div>Speed</div>
+    <div class="row"><div class="dot"></div><span>Distance travelled per unit time.</span></div>
+    <div class="fbox" style="background:#fff8ef;border-color:#FAC775;color:#633806;">Speed = Distance / Time</div>
+    <div class="row"><div class="dot"></div><span><span class="tag">Scalar quantity</span> — no direction.</span></div>
+    <div class="row"><div class="dot"></div><span>SI unit: <strong>m/s</strong></span></div>
+    <div class="sub">Average speed</div>
+    <div class="fbox" style="background:#fff8ef;border-color:#FAC775;color:#633806;">Avg Speed = Total distance / Total time</div>
+    <div class="sub">Uniform motion</div>
+    <div class="row"><div class="dot"></div><span>Equal distance in equal intervals of time. E.g. A —100m— B —100m— C in 20s each.</span></div>
+    <div class="sub">Non-uniform motion</div>
+    <div class="row"><div class="dot"></div><span>Unequal distance in equal or unequal intervals. E.g. moving in a busy market.</span></div>
+  </div>
+  <div class="card amber-c">
+    <div class="ct"><div class="ico">v</div>Velocity</div>
+    <div class="row"><div class="dot"></div><span>Displacement per unit time.</span></div>
+    <div class="fbox" style="background:#fff8ef;border-color:#FAC775;color:#633806;">Velocity = Displacement / Time</div>
+    <div class="row"><div class="dot"></div><span><span class="tag">Vector quantity</span> — has direction.</span></div>
+    <div class="row"><div class="dot"></div><span>SI unit: <strong>m/s</strong></span></div>
+    <div class="sub">Average velocity</div>
+    <div class="fbox" style="background:#fff8ef;border-color:#FAC775;color:#633806;">Avg Velocity = Total displacement / Total time</div>
+    <div class="row"><div class="dot"></div><span>If body returns to same point, avg velocity = 0 (displacement = 0) but avg speed ≠ 0.</span></div>
+  </div>
+</div>
+
+<div class="sec-label">Acceleration</div>
+<div class="card coral-c" style="margin-bottom:12px;">
+  <div class="ct"><div class="ico">a</div>Acceleration</div>
+  <div class="g2" style="margin-bottom:0;">
+    <div>
+      <div class="row"><div class="dot"></div><span>Change in velocity per unit time.</span></div>
+      <div class="fbox" style="background:#fff6f3;border-color:#F5C4B3;color:#4A1B0C;">a = (v − u) / t</div>
+      <div class="row"><div class="dot"></div><span><span class="tag">Vector quantity</span> SI unit: <strong>m/s²</strong></span></div>
+      <div class="row"><div class="dot"></div><span><strong>Uniform acceleration:</strong> constant change in velocity. E.g. free fall under gravity.</span></div>
+    </div>
+    <div>
+      <div class="sub">Symbols used</div>
+      <div class="row"><div class="dot"></div><span><span class="tag">u</span> initial velocity</span></div>
+      <div class="row"><div class="dot"></div><span><span class="tag">v</span> final velocity</span></div>
+      <div class="row"><div class="dot"></div><span><span class="tag">s</span> displacement</span></div>
+      <div class="row"><div class="dot"></div><span><span class="tag">a</span> uniform acceleration</span></div>
+      <div class="row"><div class="dot"></div><span><span class="tag">t</span> time duration</span></div>
+      <div class="row"><div class="dot"></div><span>Negative acceleration = <strong>retardation</strong> (object slowing down).</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label">Equations of motion (for uniform acceleration)</div>
+<div class="card purple-c" style="margin-bottom:12px;">
+  <div class="ct"><div class="ico">=</div>Three equations of motion</div>
+  <div class="eqn-row">
+    <div class="eqn-box">
+      <div class="elabel">1st equation</div>
+      <div class="eform">v = u + at</div>
+      <div style="font-size:10px;color:var(--color-text-secondary);margin-top:4px;">velocity–time relation</div>
+    </div>
+    <div class="eqn-box">
+      <div class="elabel">2nd equation</div>
+      <div class="eform">s = ut + ½at²</div>
+      <div style="font-size:10px;color:var(--color-text-secondary);margin-top:4px;">position–time relation</div>
+    </div>
+    <div class="eqn-box">
+      <div class="elabel">3rd equation</div>
+      <div class="eform">v² = u² + 2as</div>
+      <div style="font-size:10px;color:var(--color-text-secondary);margin-top:4px;">velocity–position relation</div>
+    </div>
+  </div>
+  <div class="row" style="margin-top:10px;"><div class="dot"></div><span style="font-size:11px;">These equations are valid <strong>only</strong> for uniform (constant) acceleration in a straight line.</span></div>
+</div>
+
+<div class="sec-label">Graphical representation</div>
+<div class="g2" style="margin-bottom:12px;">
+  <div class="card green-c">
+    <div class="ct"><div class="ico">P</div>Position–Time graph</div>
+    <div class="row"><div class="dot"></div><span><strong>Slope of P–T graph = Velocity</strong></span></div>
+
+    <div class="graph-wrap">
+      <div class="gl">Body at rest</div>
+      <svg class="g" width="100%" viewBox="0 0 160 80">
+        <line class="ax" x1="20" y1="65" x2="150" y2="65"/>
+        <line class="ax" x1="20" y1="10" x2="20" y2="65"/>
+        <text class="ax-lbl" x="85" y="76">Time</text>
+        <text class="ax-lbl" x="2" y="40" transform="rotate(-90,10,40)">Position</text>
+        <line class="gline" x1="30" y1="40" x2="140" y2="40" stroke="#639922"/>
+      </svg>
+    </div>
+
+    <div class="graph-wrap">
+      <div class="gl">Uniform motion (constant slope)</div>
+      <svg class="g" width="100%" viewBox="0 0 160 80">
+        <line class="ax" x1="20" y1="65" x2="150" y2="65"/>
+        <line class="ax" x1="20" y1="10" x2="20" y2="65"/>
+        <text class="ax-lbl" x="85" y="76">Time</text>
+        <text class="ax-lbl" x="2" y="40" transform="rotate(-90,10,40)">Position</text>
+        <line class="gline" x1="25" y1="60" x2="140" y2="18" stroke="#639922"/>
+      </svg>
+    </div>
+
+    <div class="graph-wrap">
+      <div class="gl">Non-uniform motion (varying slope)</div>
+      <svg class="g" width="100%" viewBox="0 0 160 80">
+        <line class="ax" x1="20" y1="65" x2="150" y2="65"/>
+        <line class="ax" x1="20" y1="10" x2="20" y2="65"/>
+        <text class="ax-lbl" x="85" y="76">Time</text>
+        <text class="ax-lbl" x="2" y="40" transform="rotate(-90,10,40)">Position</text>
+        <polyline class="gline" points="25,60 60,38 95,25 130,18" stroke="#639922"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card green-c">
+    <div class="ct"><div class="ico">V</div>Velocity–Time graph</div>
+    <div class="row"><div class="dot"></div><span><strong>Slope of V–T graph = Acceleration</strong></span></div>
+    <div class="row"><div class="dot"></div><span><strong>Area under V–T graph = Displacement</strong></span></div>
+
+    <div class="graph-wrap">
+      <div class="gl">Constant velocity (zero acceleration)</div>
+      <svg class="g" width="100%" viewBox="0 0 160 80">
+        <line class="ax" x1="20" y1="65" x2="150" y2="65"/>
+        <line class="ax" x1="20" y1="10" x2="20" y2="65"/>
+        <text class="ax-lbl" x="85" y="76">Time</text>
+        <text class="ax-lbl" x="2" y="40" transform="rotate(-90,10,40)">Velocity</text>
+        <line class="gline" x1="25" y1="35" x2="140" y2="35" stroke="#1D9E75"/>
+      </svg>
+    </div>
+
+    <div class="graph-wrap">
+      <div class="gl">Uniform +ve acceleration (straight line up)</div>
+      <svg class="g" width="100%" viewBox="0 0 160 80">
+        <line class="ax" x1="20" y1="65" x2="150" y2="65"/>
+        <line class="ax" x1="20" y1="10" x2="20" y2="65"/>
+        <text class="ax-lbl" x="85" y="76">Time</text>
+        <text class="ax-lbl" x="2" y="40" transform="rotate(-90,10,40)">Velocity</text>
+        <line class="gline" x1="25" y1="60" x2="140" y2="18" stroke="#1D9E75"/>
+      </svg>
+    </div>
+
+    <div class="graph-wrap">
+      <div class="gl">Uniform −ve acceleration / retardation</div>
+      <svg class="g" width="100%" viewBox="0 0 160 80">
+        <line class="ax" x1="20" y1="65" x2="150" y2="65"/>
+        <line class="ax" x1="20" y1="10" x2="20" y2="65"/>
+        <text class="ax-lbl" x="85" y="76">Time</text>
+        <text class="ax-lbl" x="2" y="40" transform="rotate(-90,10,40)">Velocity</text>
+        <line class="gline" x1="25" y1="18" x2="140" y2="60" stroke="#1D9E75"/>
+      </svg>
+    </div>
+
+    <div class="graph-wrap">
+      <div class="gl">Non-uniform acceleration (curve)</div>
+      <svg class="g" width="100%" viewBox="0 0 160 80">
+        <line class="ax" x1="20" y1="65" x2="150" y2="65"/>
+        <line class="ax" x1="20" y1="10" x2="20" y2="65"/>
+        <text class="ax-lbl" x="85" y="76">Time</text>
+        <text class="ax-lbl" x="2" y="40" transform="rotate(-90,10,40)">Velocity</text>
+        <polyline class="gline" points="25,60 50,52 80,38 110,26 140,18" stroke="#1D9E75"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label">Area under V–T graph = displacement</div>
+<div class="card teal-c" style="margin-bottom:12px;">
+  <div class="ct"><div class="ico">A</div>Displacement from V–T graph (trapezium)</div>
+  <div class="g2" style="margin-bottom:0;align-items:center;">
+    <div>
+      <svg class="g" width="100%" viewBox="0 0 200 110">
+        <line class="ax" x1="20" y1="90" x2="185" y2="90"/>
+        <line class="ax" x1="20" y1="10" x2="20" y2="90"/>
+        <text class="ax-lbl" x="95" y="102">Time</text>
+        <text class="ax-lbl" x="2" y="52" transform="rotate(-90,10,52)">Velocity</text>
+        <text class="ax-lbl" x="18" y="88">O</text>
+        <text class="ax-lbl" x="25" y="88">|</text>
+        <text class="ax-lbl" x="170" y="88">C</text>
+        <polygon points="25,85 25,30 140,30 170,85" fill="#9FE1CB" opacity=".5"/>
+        <line class="gline" x1="25" y1="30" x2="140" y2="30" stroke="#0F6E56"/>
+        <line class="gline" x1="25" y1="85" x2="25" y2="30" stroke="#0F6E56"/>
+        <line class="gline" x1="140" y1="30" x2="170" y2="85" stroke="#0F6E56"/>
+        <line class="gline" x1="25" y1="85" x2="170" y2="85" stroke="#0F6E56"/>
+        <text class="ax-lbl" x="25" y="25" fill="#085041" style="font-weight:700;">A</text>
+        <text class="ax-lbl" x="138" y="25" fill="#085041" style="font-weight:700;">B</text>
+        <text class="ax-lbl" x="79" y="62" fill="#085041" style="font-weight:700;font-size:10px;">Area OABC</text>
+      </svg>
+    </div>
+    <div>
+      <div class="row"><div class="dot"></div><span>Area of trapezium OABC = Displacement</span></div>
+      <div class="fbox" style="background:var(--color-background-primary);color:#04342C;border-color:#5DCAA5;">Displacement = Area under V-T graph</div>
+      <div class="row"><div class="dot"></div><span>For uniform acceleration, the area is a trapezium (or triangle if starts from rest).</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label">Uniform circular motion</div>
+<div class="card pink-c" style="margin-bottom:12px;">
+  <div class="ct"><div class="ico">O</div>Uniform circular motion</div>
+  <div class="g2" style="margin-bottom:0;">
+    <div>
+      <div class="row"><div class="dot"></div><span>Body moves in a circular path at <strong>constant speed</strong> but velocity changes continuously because direction changes at every point.</span></div>
+      <div class="row"><div class="dot"></div><span>Since velocity changes (direction), there <strong>is acceleration</strong> even though speed is constant.</span></div>
+      <div class="row"><div class="dot"></div><span>Direction of velocity is always <strong>tangential</strong> to the circle at that point.</span></div>
+      <div class="fbox" style="background:var(--color-background-primary);border-color:#ED93B1;color:#4B1528;">v = 2πR / T</div>
+      <div class="row"><div class="dot"></div><span>Where R = radius of circle, T = time period for one complete revolution.</span></div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:center;">
+      <svg viewBox="0 0 140 140" width="130" height="130">
+        <circle cx="70" cy="70" r="45" stroke="#D4537E" stroke-width="1.5" fill="none"/>
+        <circle cx="70" cy="25" r="5" fill="#D4537E"/>
+        <line x1="70" y1="25" x2="100" y2="10" stroke="#993556" stroke-width="1.5" stroke-dasharray="3,2"/>
+        <text x="102" y="14" font-size="9" fill="#993556" font-family="Nunito" font-weight="700">v (tangential)</text>
+        <line x1="70" y1="70" x2="70" y2="25" stroke="#AFA9EC" stroke-width="1" stroke-dasharray="3,2"/>
+        <text x="74" y="52" font-size="9" fill="#534AB7" font-family="Nunito" font-weight="700">R</text>
+        <circle cx="70" cy="70" r="3" fill="#534AB7"/>
+        <text x="63" y="78" font-size="9" fill="#534AB7" font-family="Nunito" font-weight="700">centre</text>
+      </svg>
+    </div>
+  </div>
+  <div class="sub" style="margin-top:6px;">Examples</div>
+  <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
+    <span class="tag">Earth revolving around Sun</span>
+    <span class="tag">Moon around Earth</span>
+    <span class="tag">Tip of clock hands</span>
+    <span class="tag">Fan blades</span>
+    <span class="tag">Stone tied to a string whirled in circle</span>
+  </div>
+</div>
+
+<div class="sec-label">Quick summary — graph slope &amp; area rules</div>
+<div class="g2" style="margin-bottom:12px;">
+  <div class="card purple-c" style="padding:10px 14px;">
+    <div class="ct" style="font-size:12px;"><div class="ico" style="font-size:10px;">P-T</div>Position–Time graph</div>
+    <div class="row"><div class="dot"></div><span><strong>Slope</strong> = Velocity</span></div>
+    <div class="row"><div class="dot"></div><span>Horizontal line → body at rest</span></div>
+    <div class="row"><div class="dot"></div><span>Straight inclined line → uniform motion</span></div>
+    <div class="row"><div class="dot"></div><span>Curved line → non-uniform motion</span></div>
+  </div>
+  <div class="card purple-c" style="padding:10px 14px;">
+    <div class="ct" style="font-size:12px;"><div class="ico" style="font-size:10px;">V-T</div>Velocity–Time graph</div>
+    <div class="row"><div class="dot"></div><span><strong>Slope</strong> = Acceleration</span></div>
+    <div class="row"><div class="dot"></div><span><strong>Area under graph</strong> = Displacement</span></div>
+    <div class="row"><div class="dot"></div><span>Horizontal line → constant velocity (a = 0)</span></div>
+    <div class="row"><div class="dot"></div><span>Straight line up → uniform +ve acceleration</span></div>
+    <div class="row"><div class="dot"></div><span>Straight line down → retardation (−ve accln)</span></div>
+    <div class="row"><div class="dot"></div><span>Curve → non-uniform acceleration</span></div>
+  </div>
+</div>
+
+<div class="footer">
+  <span>Motion Notes By Deepak Sir</span>
+  <button class="pbtn" onclick="window.print()">Print / Save PDF</button>
+</div>
+</div>
