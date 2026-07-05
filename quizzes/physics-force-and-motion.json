@@ -1,0 +1,123 @@
+{
+  "title": "Forces and Laws of Motion",
+  "subject": "Science",
+  "topic": "Forces and Laws of Motion",
+  "level": "CBSE/TGT",
+  "questions": [
+    {
+      "question": "A body of mass 5 kg is initially at rest. A net force of 20 N acts on it for 4 s. What will be its final velocity?",
+      "options": ["8 m/s", "12 m/s", "16 m/s", "20 m/s"],
+      "answer": "16 m/s"
+    },
+    {
+      "question": "Which of the following best explains why passengers fall forward when a moving bus stops suddenly?",
+      "options": ["Gravitational force", "Newton's First Law of Motion", "Newton's Second Law of Motion", "Newton's Third Law of Motion"],
+      "answer": "Newton's First Law of Motion"
+    },
+    {
+      "question": "The SI unit of momentum is",
+      "options": ["kg m/s", "N/s", "kg/s", "N m"],
+      "answer": "kg m/s"
+    },
+    {
+      "question": "A force of 30 N produces an acceleration of 6 m/s² in an object. What is the mass of the object?",
+      "options": ["3 kg", "5 kg", "6 kg", "180 kg"],
+      "answer": "5 kg"
+    },
+    {
+      "question": "Which quantity remains conserved during an isolated collision?",
+      "options": ["Velocity", "Force", "Momentum", "Acceleration"],
+      "answer": "Momentum"
+    },
+    {
+      "question": "An object moving with uniform velocity will continue moving with the same velocity if",
+      "options": ["A balanced force acts on it.", "No net external force acts on it.", "A large force acts on it.", "Its mass increases."],
+      "answer": "No net external force acts on it."
+    },
+    {
+      "question": "The rate of change of momentum of a body is directly proportional to",
+      "options": ["Mass", "Velocity", "Applied force", "Acceleration due to gravity"],
+      "answer": "Applied force"
+    },
+    {
+      "question": "A cricket player pulls his hands backward while catching a fast-moving ball. This action primarily",
+      "options": [
+        "Increases the force on the hands.",
+        "Reduces the impact force by increasing the time of contact.",
+        "Increases the momentum of the ball.",
+        "Stops the ball instantly."
+      ],
+      "answer": "Reduces the impact force by increasing the time of contact."
+    },
+    {
+      "question": "A truck and a car are moving with the same velocity. Which has greater momentum?",
+      "options": ["Car", "Truck", "Both have equal momentum.", "Cannot be determined."],
+      "answer": "Truck"
+    },
+    {
+      "question": "The recoil of a gun is an application of",
+      "options": ["Newton's First Law", "Newton's Second Law", "Newton's Third Law", "Law of Gravitation"],
+      "answer": "Newton's Third Law"
+    },
+    {
+      "question": "A force of 18 N acts on a body of mass 3 kg. The acceleration produced is",
+      "options": ["3 m/s²", "6 m/s²", "9 m/s²", "18 m/s²"],
+      "answer": "6 m/s²"
+    },
+    {
+      "question": "A body of mass 2 kg is moving with a velocity of 8 m/s. Its momentum is",
+      "options": ["4 kg m/s", "8 kg m/s", "16 kg m/s", "32 kg m/s"],
+      "answer": "16 kg m/s"
+    },
+    {
+      "question": "A force of 50 N acts on a body for 2 s. The impulse delivered to the body is",
+      "options": ["25 N s", "50 N s", "100 N s", "200 N s"],
+      "answer": "100 N s"
+    },
+    {
+      "question": "A batsman moves his bat backward while hitting a cricket ball. This helps to",
+      "options": [
+        "Decrease the impulse.",
+        "Increase the time of contact and hence the impulse.",
+        "Reduce the momentum of the bat.",
+        "Decrease the applied force."
+      ],
+      "answer": "Increase the time of contact and hence the impulse."
+    },
+    {
+      "question": "Which of the following situations best demonstrates Newton's Third Law of Motion?",
+      "options": ["A book resting on a table.", "A person pushing a wall.", "A stone falling freely.", "A car moving at constant speed."],
+      "answer": "A person pushing a wall."
+    },
+    {
+      "question": "An object experiences an acceleration of 5 m/s² when a force of 25 N is applied. What force is required to produce an acceleration of 8 m/s² in the same object?",
+      "options": ["30 N", "35 N", "40 N", "45 N"],
+      "answer": "40 N"
+    },
+    {
+      "question": "A body of mass 4 kg moving with a velocity of 6 m/s is brought to rest. The change in momentum is",
+      "options": ["12 kg m/s", "24 kg m/s", "30 kg m/s", "48 kg m/s"],
+      "answer": "24 kg m/s"
+    },
+    {
+      "question": "Why are airbags installed in cars?",
+      "options": [
+        "To increase the speed of the passenger.",
+        "To increase the force during collision.",
+        "To increase the time of impact and reduce injury.",
+        "To reduce the mass of the vehicle."
+      ],
+      "answer": "To increase the time of impact and reduce injury."
+    },
+    {
+      "question": "A force acting on a body changes its",
+      "options": ["State of rest or motion.", "Colour only.", "Temperature only.", "Chemical composition."],
+      "answer": "State of rest or motion."
+    },
+    {
+      "question": "Two skaters push each other and move in opposite directions. This illustrates",
+      "options": ["Law of Conservation of Energy", "Newton's First Law", "Newton's Second Law", "Newton's Third Law"],
+      "answer": "Newton's Third Law"
+    }
+  ]
+}

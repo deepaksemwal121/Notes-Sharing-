@@ -5,6 +5,12 @@
       "subject": "Chemistry",
       "topic": "Atomic Structure",
       "file": "atom.json"
+    },
+     {
+      "title": "Describing Motion Around Us",
+      "subject": "Physics",
+      "topic": "Force and Motion",
+      "file": "physics-force-and-motion.json"
     }
   ]
 }
