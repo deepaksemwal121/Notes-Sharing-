@@ -70,6 +70,34 @@ async function loadQuizzesFromFiles(fileList) {
   return collected;
 }
 
+async function loadQuizzesFromManifest() {
+  try {
+    const response = await fetch("quizzes/manifest.json", { cache: "no-store" });
+    if (!response.ok) return [];
+
+    const manifest = await response.json();
+    const entries = Array.isArray(manifest?.quizzes) ? manifest.quizzes : [];
+    const collected = [];
+
+    for (const entry of entries) {
+      const fileName = entry?.file || entry?.path || entry?.name;
+      if (!fileName) continue;
+      try {
+        const fileResponse = await fetch(`quizzes/${encodeURIComponent(fileName)}`, { cache: "no-store" });
+        if (!fileResponse.ok) continue;
+        const parsed = await fileResponse.json();
+        collected.push(normalizeQuizForStorage({ ...parsed, title: parsed.title || entry.title || fileName }));
+      } catch (error) {
+        // Skip invalid entries quietly.
+      }
+    }
+
+    return collected;
+  } catch (error) {
+    return [];
+  }
+}
+
 function pickRandom(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
@@ -538,7 +566,22 @@ document.addEventListener("DOMContentLoaded", () => {
       input.style.display = "none";
 
       folderButton.addEventListener("click", async () => {
-        input.click();
+        try {
+          const loadedQuizzes = await loadQuizzesFromManifest();
+          if (loadedQuizzes.length) {
+            savedQuizzes = loadedQuizzes;
+            saveSavedQuizzes();
+            renderQuizList();
+            if (folderStatus) {
+              folderStatus.textContent = `Loaded ${savedQuizzes.length} quiz${savedQuizzes.length === 1 ? "" : "zes"} from the manifest.`;
+              folderStatus.style.color = "#15803d";
+            }
+            return;
+          }
+          input.click();
+        } catch (error) {
+          input.click();
+        }
       });
 
       input.addEventListener("change", async () => {
