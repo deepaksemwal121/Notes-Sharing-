@@ -1,0 +1,210 @@
+{
+  "id": "1783242317339",
+  "title": "Journey Inside the Atom Worksheet MCQs",
+  "subject": "Science",
+  "topic": "Journey Inside the Atom",
+  "level": "Medium",
+  "questions": [
+    {
+      "question": "A student claims that if Thomson's atomic model were correct, almost all alpha particles would pass through a gold foil without undergoing large deflections. Which statement best justifies this claim?",
+      "options": [
+        "Electrons are concentrated at the centre of the atom.",
+        "Positive charge is uniformly distributed throughout the atom.",
+        "Alpha particles have no charge.",
+        "Gold atoms are electrically neutral."
+      ],
+      "answer": "Positive charge is uniformly distributed throughout the atom."
+    },
+    {
+      "question": "During Rutherford's gold foil experiment, only a very small fraction of alpha particles rebounded after striking the foil. This observation led to the conclusion that",
+      "options": [
+        "Electrons possess greater mass than protons.",
+        "Most of the atom is occupied by the nucleus.",
+        "The nucleus occupies only a tiny fraction of the atom's volume.",
+        "Electrons remain fixed inside the nucleus."
+      ],
+      "answer": "The nucleus occupies only a tiny fraction of the atom's volume."
+    },
+    {
+      "question": "An element X has an atomic number of 17 and a mass number of 37. Which of the following correctly represents the number of neutrons present in its atom?",
+      "options": [
+        "17",
+        "18",
+        "20",
+        "37"
+      ],
+      "answer": "20"
+    },
+    {
+      "question": "Which statement correctly explains why atoms are electrically neutral?",
+      "options": [
+        "Number of neutrons equals number of protons.",
+        "Number of electrons equals number of neutrons.",
+        "Number of electrons equals number of protons.",
+        "Number of protons equals mass number."
+      ],
+      "answer": "Number of electrons equals number of protons."
+    },
+    {
+      "question": "A neutral atom has the electronic configuration 2,8,2. The valency of this element is",
+      "options": [
+        "8",
+        "6",
+        "2",
+        "10"
+      ],
+      "answer": "2"
+    },
+    {
+      "question": "Which pair of atoms represents isotopes?",
+      "options": [
+        "Atomic numbers: 18 and 20; Mass numbers: 40 and 40",
+        "Atomic numbers: 17 and 17; Mass numbers: 35 and 37",
+        "Atomic numbers: 11 and 12; Mass numbers: 23 and 24",
+        "Atomic numbers: 6 and 8; Mass numbers: 12 and 16"
+      ],
+      "answer": "Atomic numbers: 17 and 17; Mass numbers: 35 and 37"
+    },
+    {
+      "question": "An atom contains 15 protons, 16 neutrons and 15 electrons. Which notation correctly represents the atom?",
+      "options": [
+        "15/31 X",
+        "31/15 X",
+        "16/15 X",
+        "30/15 X"
+      ],
+      "answer": "31/15 X"
+    },
+    {
+      "question": "Which scientist successfully explained why electrons do not continuously lose energy while revolving around the nucleus?",
+      "options": [
+        "John Dalton",
+        "J. J. Thomson",
+        "Ernest Rutherford",
+        "Niels Bohr"
+      ],
+      "answer": "Niels Bohr"
+    },
+    {
+      "question": "An atom has the electronic configuration 2,8,7. During chemical reactions, the atom is most likely to",
+      "options": [
+        "Lose seven electrons.",
+        "Gain one electron.",
+        "Lose one electron.",
+        "Gain seven electrons."
+      ],
+      "answer": "Gain one electron."
+    },
+    {
+      "question": "Which observation from Rutherford's experiment directly disproved Thomson's atomic model?",
+      "options": [
+        "Electrons possess negative charge.",
+        "Most alpha particles passed straight through the foil.",
+        "A few alpha particles were deflected through very large angles.",
+        "Gold atoms contain electrons."
+      ],
+      "answer": "A few alpha particles were deflected through very large angles."
+    },
+    {
+      "question": "An atom contains 20 neutrons and has an atomic number of 19. Its mass number is",
+      "options": [
+        "19",
+        "20",
+        "39",
+        "41"
+      ],
+      "answer": "39"
+    },
+    {
+      "question": "Which statement correctly distinguishes atomic number from mass number?",
+      "options": [
+        "Atomic number is always greater than mass number.",
+        "Mass number represents only neutrons.",
+        "Atomic number equals the number of protons, whereas mass number equals the total number of protons and neutrons.",
+        "Both represent the same quantity."
+      ],
+      "answer": "Atomic number equals the number of protons, whereas mass number equals the total number of protons and neutrons."
+    },
+    {
+      "question": "Which electronic configuration represents an atom having zero valency?",
+      "options": [
+        "2,8,1",
+        "2,6",
+        "2,8",
+        "2,7"
+      ],
+      "answer": "2,8"
+    },
+    {
+      "question": "A student concludes that electrons contribute significantly to the mass of an atom. Which statement best evaluates this conclusion?",
+      "options": [
+        "Correct, because electrons are heavier than protons.",
+        "Incorrect, because electrons possess negligible mass compared to protons and neutrons.",
+        "Correct, because electrons determine the mass number.",
+        "Incorrect, because electrons are positively charged."
+      ],
+      "answer": "Incorrect, because electrons possess negligible mass compared to protons and neutrons."
+    },
+    {
+      "question": "Which of the following observations best supports the idea that electrons are present in every atom?",
+      "options": [
+        "Radioactivity is observed in all elements.",
+        "Cathode rays show identical properties irrespective of the gas and electrode material used.",
+        "Every atom contains the same number of neutrons.",
+        "Alpha particles are positively charged."
+      ],
+      "answer": "Cathode rays show identical properties irrespective of the gas and electrode material used."
+    },
+    {
+      "question": "Which pair correctly represents isobars?",
+      "options": [
+        "35Cl and 37Cl",
+        "40Ar and 40Ca",
+        "12C and 13C",
+        "2H and 3H"
+      ],
+      "answer": "40Ar and 40Ca"
+    },
+    {
+      "question": "A neutral atom has 18 electrons. The number of protons present in its nucleus will be",
+      "options": [
+        "16",
+        "17",
+        "18",
+        "36"
+      ],
+      "answer": "18"
+    },
+    {
+      "question": "Which statement correctly explains why isotopes of an element exhibit nearly identical chemical properties?",
+      "options": [
+        "They possess identical mass numbers.",
+        "They contain the same number of neutrons.",
+        "They have identical electronic configurations.",
+        "They have identical atomic masses."
+      ],
+      "answer": "They have identical electronic configurations."
+    },
+    {
+      "question": "An atom has the electronic configuration 2,8,3. Which of the following is most likely to occur during compound formation?",
+      "options": [
+        "It gains three electrons.",
+        "It loses three electrons.",
+        "It gains five electrons.",
+        "It shares eight electrons."
+      ],
+      "answer": "It loses three electrons."
+    },
+    {
+      "question": "A teacher asks students why the discovery of the neutron was necessary even after protons had been discovered. The most appropriate explanation is that neutrons",
+      "options": [
+        "Neutralise electrons in the atom.",
+        "Explain the additional mass present in atomic nuclei.",
+        "Determine the atomic number of an element.",
+        "Revolve around the nucleus in fixed shells."
+      ],
+      "answer": "Explain the additional mass present in atomic nuclei."
+    }
+  ],
+  "createdAt": "7/5/2026, 2:35:17 PM"
+}

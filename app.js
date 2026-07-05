@@ -43,63 +43,30 @@ function normalizeQuizForStorage(quiz) {
   };
 }
 
-async function ensureFolderHandle(parentHandle, folderName) {
-  try {
-    return await parentHandle.getDirectoryHandle(folderName, { create: true });
-  } catch (error) {
-    return parentHandle;
-  }
+function downloadQuizFile(quiz) {
+  const blob = new Blob([JSON.stringify(quiz, null, 2)], { type: "application/json" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = `${slugify(quiz.subject)}-${slugify(quiz.topic)}-${slugify(quiz.title)}.json`;
+  link.click();
+  URL.revokeObjectURL(link.href);
 }
 
-async function saveQuizToFolder(quiz) {
-  if (!window.showDirectoryPicker) {
-    const blob = new Blob([JSON.stringify(quiz, null, 2)], { type: "application/json" });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = `${slugify(quiz.subject)}-${slugify(quiz.topic)}-${slugify(quiz.title)}.json`;
-    link.click();
-    URL.revokeObjectURL(link.href);
-    return { path: `${quiz.subject}/${quiz.topic}/${quiz.title}.json`, fallback: true };
-  }
-
-  const rootHandle = await window.showDirectoryPicker({ mode: "readwrite" });
-  const subjectFolder = await ensureFolderHandle(rootHandle, slugify(quiz.subject));
-  const topicFolder = await ensureFolderHandle(subjectFolder, slugify(quiz.topic));
-  const fileName = `${slugify(quiz.title)}.json`;
-  const fileHandle = await topicFolder.getFileHandle(fileName, { create: true });
-  const writable = await fileHandle.createWritable();
-  await writable.write(JSON.stringify(quiz, null, 2));
-  await writable.close();
-  return { path: `${quiz.subject}/${quiz.topic}/${fileName}`, fallback: false };
-}
-
-async function loadQuizzesFromFolder() {
-  if (!window.showDirectoryPicker) {
-    throw new Error("Your browser does not support folder selection for quiz files.");
-  }
-
-  const rootHandle = await window.showDirectoryPicker({ mode: "readwrite" });
+async function loadQuizzesFromFiles(fileList) {
   const collected = [];
+  const files = Array.from(fileList || []);
 
-  async function walk(handle) {
-    for await (const entry of handle.values()) {
-      if (entry.kind === "directory") {
-        await walk(entry);
-      } else if (entry.kind === "file" && entry.name.toLowerCase().endsWith(".json")) {
-        const file = await entry.getFile();
-        const text = await file.text();
-        try {
-          const parsed = JSON.parse(text);
-          const normalized = normalizeQuizForStorage(parsed);
-          collected.push(normalized);
-        } catch (error) {
-          // Skip invalid files quietly.
-        }
-      }
+  for (const file of files) {
+    if (!file.name.toLowerCase().endsWith(".json")) continue;
+    try {
+      const text = await file.text();
+      const parsed = JSON.parse(text);
+      collected.push(normalizeQuizForStorage(parsed));
+    } catch (error) {
+      // Skip invalid files quietly.
     }
   }
 
-  await walk(rootHandle);
   return collected;
 }
 
@@ -383,10 +350,10 @@ function renderCreatePage() {
     });
 
     try {
-      const saveInfo = await saveQuizToFolder(quizToSave);
+      downloadQuizFile(quizToSave);
       savedQuizzes.unshift(quizToSave);
       saveSavedQuizzes();
-      saveStatus.textContent = `Quiz saved to ${saveInfo.path}${saveInfo.fallback ? " (downloaded as a file)" : ""}.`;
+      saveStatus.textContent = "Quiz downloaded as a JSON file. Place it in your quizzes folder and load it from the quizzes page.";
       saveStatus.style.color = "#15803d";
       document.getElementById("quizTitle").value = "";
       document.getElementById("quizSubject").value = "";
@@ -394,7 +361,7 @@ function renderCreatePage() {
       questionContainer.innerHTML = "";
       addQuestionBlock();
     } catch (error) {
-      saveStatus.textContent = error.message || "The quiz could not be saved to a folder.";
+      saveStatus.textContent = error.message || "The quiz could not be downloaded.";
       saveStatus.style.color = "#b91c1c";
     }
   });
@@ -564,19 +531,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const folderStatus = document.getElementById("folderStatus");
 
     if (folderButton) {
+      const input = document.createElement("input");
+      input.type = "file";
+      input.accept = ".json";
+      input.multiple = true;
+      input.style.display = "none";
+
       folderButton.addEventListener("click", async () => {
+        input.click();
+      });
+
+      input.addEventListener("change", async () => {
         try {
-          const loadedQuizzes = await loadQuizzesFromFolder();
+          const loadedQuizzes = await loadQuizzesFromFiles(input.files);
           savedQuizzes = loadedQuizzes;
           saveSavedQuizzes();
           renderQuizList();
           if (folderStatus) {
-            folderStatus.textContent = `Loaded ${savedQuizzes.length} quiz${savedQuizzes.length === 1 ? "" : "zes"} from the selected folder.`;
+            folderStatus.textContent = `Loaded ${savedQuizzes.length} quiz${savedQuizzes.length === 1 ? "" : "zes"} from the selected JSON files.`;
             folderStatus.style.color = "#15803d";
           }
         } catch (error) {
           if (folderStatus) {
-            folderStatus.textContent = error.message || "Could not load quizzes from that folder.";
+            folderStatus.textContent = error.message || "Could not load quizzes from those files.";
             folderStatus.style.color = "#b91c1c";
           }
         }
