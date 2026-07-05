@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="app.js"></script>
+</head>
+
+<body data-theme="light">
+    <header class="page-header">
+        <div>
+            <span class="eyebrow">Teacher page</span>
+            <h1>Create Quiz</h1>
+            <p>Build quizzes and save them for students to access later.</p>
+        </div>
+        <a href="index.html" class="btn secondary">Back to Home</a>
+    </header>
+
+    <main class="container quiz-form">
+        <section class="form-card">
+            <h2>Quiz details</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="quizTitle">Quiz title</label>
+                    <input id="quizTitle" type="text" placeholder="e.g. Motion Basics">
+                </div>
+                <div class="form-group">
+                    <label for="quizSubject">Subject</label>
+                    <input id="quizSubject" type="text" placeholder="Physics">
+                </div>
+                <div class="form-group">
+                    <label for="quizTopic">Topic</label>
+                    <input id="quizTopic" type="text" placeholder="Motion">
+                </div>
+                <div class="form-group">
+                    <label for="quizLevel">Level</label>
+                    <select id="quizLevel">
+                        <option>Easy</option>
+                        <option>Medium</option>
+                        <option>Hard</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-card">
+            <h2>Import from JSON</h2>
+            <p class="helper-text">Upload a JSON file or paste quiz data to auto-fill the form.</p>
+            <div class="import-grid">
+                <div class="form-group">
+                    <label for="quizJsonFile">Upload JSON file</label>
+                    <input id="quizJsonFile" type="file" accept="application/json">
+                </div>
+                <div class="form-group">
+                    <label for="quizJsonInput">Paste JSON</label>
+                    <textarea id="quizJsonInput" rows="8"
+                        placeholder='{"title":"Motion Basics","subject":"Physics","topic":"Motion","level":"Easy","questions":[{"question":"What is speed?","options":["Distance/time","Time/distance","Distance x time","None"],"answer":"Distance/time"}]}'></textarea>
+                </div>
+            </div>
+            <div class="import-actions">
+                <button id="importJsonBtn" class="mini-btn" type="button">Load JSON</button>
+                <button id="clearImportBtn" class="btn secondary" type="button">Clear</button>
+            </div>
+            <p id="importStatus" class="helper-text"></p>
+        </section>
+
+        <section class="form-card">
+            <h2>Questions</h2>
+            <div id="questionContainer"></div>
+            <button id="addQuestionBtn" class="btn" type="button">Add Question</button>
+        </section>
+
+        <section class="form-card">
+            <button id="saveQuizBtn" class="btn" type="button">Save Quiz to Folder</button>
+            <p class="helper-text" style="margin-top: 8px;">The quiz will be saved as a JSON file inside your selected
+                folder, using a subject/topic structure.</p>
+            <p id="saveStatus" style="margin-top: 10px;"></p>
+        </section>
+    </main>
+</body>
+
+</html>

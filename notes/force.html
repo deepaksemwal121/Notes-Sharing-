@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Forces Affect Motion · Chapter 6 Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#141009;
+    --surface:#1d180f;
+    --surface-2:#262013;
+    --border:#3c331f;
+    --text:#f6efe2;
+    --muted:#b7a98e;
+    --action:#ff7a45;   /* applied / unbalanced force */
+    --reaction:#38d6c0;  /* opposing / balanced / friction */
+    --spark:#ffd23f;     /* equations, highlights */
+    --blue:#6fa8ff;      /* gravity / normal force */
+    --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 12% 10%, rgba(255,122,69,0.09), transparent 42%),
+      radial-gradient(circle at 88% 15%, rgba(56,214,192,0.08), transparent 45%),
+      var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,.display{font-family:'Bebas Neue', sans-serif; letter-spacing:0.02em;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;}
+
+  nav{
+    position:sticky; top:0; z-index:50;
+    display:flex; gap:6px; justify-content:center; flex-wrap:wrap;
+    padding:12px 16px;
+    background:rgba(20,16,9,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  nav a{
+    font-family:'IBM Plex Mono',monospace; font-size:0.74rem; text-transform:uppercase; letter-spacing:0.06em;
+    padding:7px 13px; border-radius:999px; color:var(--muted);
+    text-decoration:none; transition:.2s; border:1px solid transparent;
+  }
+  nav a:hover{color:var(--text); border-color:var(--border); background:var(--surface);}
+
+  section{padding:70px 20px; max-width:980px; margin:0 auto;}
+  .eyebrow{
+    display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:0.72rem;
+    letter-spacing:0.14em; text-transform:uppercase; color:var(--spark);
+    border:1px solid rgba(255,210,63,0.3); padding:4px 10px; border-radius:999px;
+    margin-bottom:14px; background:rgba(255,210,63,0.06);
+  }
+  h2.title{font-size:clamp(1.9rem,5vw,3rem); font-weight:400; margin:0 0 18px; color:#fff; text-transform:uppercase;}
+  p.lead{color:var(--muted); font-size:1.05rem; max-width:760px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:92vh; display:flex; flex-direction:column; align-items:center;
+    justify-content:center; text-align:center; padding:40px 20px; position:relative; overflow:hidden;
+  }
+  .hero h1{
+    font-size:clamp(3rem,10vw,6.5rem); font-weight:400; margin:20px 0 6px; line-height:0.95;
+    text-transform:uppercase;
+  }
+  .hero h1 span{color:var(--action);}
+  .hero p{color:var(--muted); font-size:1.15rem; max-width:560px; margin:14px auto 30px;}
+  .chip-row{display:flex; gap:10px; flex-wrap:wrap; justify-content:center;}
+  .chip{
+    font-family:'IBM Plex Mono',monospace; font-size:0.75rem; color:var(--muted);
+    border:1px solid var(--border); padding:6px 12px; border-radius:999px;
+  }
+  .hero-rig{width:320px; max-width:80vw; margin-bottom:10px;}
+  .scroll-hint{margin-top:36px; color:var(--muted); font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; font-family:'IBM Plex Mono',monospace;}
+
+  @keyframes pushPull{0%,100%{transform:translateX(-6px);} 50%{transform:translateX(6px);}}
+  @keyframes arrowPulse{0%,100%{opacity:0.4;} 50%{opacity:1;}}
+
+  .card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px;}
+  .grid{display:grid; gap:16px;}
+  .grid-2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
+  .grid-3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}
+
+  .btn{
+    font-family:'IBM Plex Mono',monospace; font-size:0.8rem; letter-spacing:0.03em;
+    background:var(--action); color:#1a0f06; border:none; padding:10px 20px;
+    border-radius:999px; cursor:pointer; font-weight:700; transition:.2s;
+  }
+  .btn:hover{filter:brightness(1.1); transform:translateY(-1px);}
+  .btn.alt{background:var(--reaction);}
+  .btn.ghost{background:transparent; color:var(--text); border:1px solid var(--border);}
+
+  /* ---------- CONCEPT OF FORCE ---------- */
+  .force-examples{display:flex; gap:16px; flex-wrap:wrap; margin-top:20px;}
+  .force-ex{
+    flex:1 1 150px; background:var(--surface); border:1px solid var(--border); border-radius:16px;
+    padding:20px; text-align:center;
+  }
+  .force-ex .emoji{font-size:2.2rem; margin-bottom:8px;}
+  .force-ex strong{display:block; color:#fff; font-size:0.95rem;}
+  .force-ex span{font-size:0.8rem; color:var(--muted);}
+
+  .unit-box{
+    display:flex; align-items:center; gap:24px; flex-wrap:wrap; margin-top:20px;
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:26px;
+  }
+  .unit-badge{
+    font-family:'Bebas Neue',sans-serif; font-size:3.5rem; color:var(--spark); border:3px solid var(--spark);
+    border-radius:16px; padding:6px 22px; line-height:1;
+  }
+  .scale-track{position:relative; height:8px; background:var(--surface-2); border-radius:999px; margin:22px 0 8px; flex:1; min-width:220px;}
+  .scale-fill{position:absolute; left:0; top:0; bottom:0; border-radius:999px; background:linear-gradient(90deg,var(--reaction),var(--action));}
+  .scale-labels{display:flex; justify-content:space-between; font-size:0.72rem; color:var(--muted); font-family:'IBM Plex Mono',monospace;}
+
+  /* ---------- TUG OF WAR ---------- */
+  .tug-stage{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:30px; margin-top:20px;}
+  .rope-track{position:relative; height:60px; background:var(--surface-2); border-radius:999px; margin:20px 0; overflow:hidden;}
+  .rope-fill{position:absolute; top:0; bottom:0; left:50%; width:4px; background:var(--spark); transition:left .4s ease;}
+  .rope-line{position:absolute; top:50%; left:0; right:0; height:2px; background:var(--border); transform:translateY(-50%);}
+  .team-row{display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap;}
+  .team-control{flex:1; min-width:220px;}
+  .team-control label{display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:6px; font-family:'IBM Plex Mono',monospace;}
+  input[type=range]{width:100%; accent-color:var(--action);}
+  .tug-result{text-align:center; margin-top:16px; font-family:'IBM Plex Mono',monospace; font-size:1.1rem;}
+  .tug-result.balanced{color:var(--reaction);}
+  .tug-result.unbalanced{color:var(--action);}
+
+  /* ---------- NET FORCE SANDBOX (signature) ---------- */
+  .lab{
+    background:radial-gradient(circle at 25% 15%, rgba(255,122,69,0.07), transparent 55%), var(--surface);
+    border:1px solid var(--border); border-radius:24px; padding:32px; margin-top:24px;
+  }
+  .lab-stage{position:relative; height:160px; background:var(--surface-2); border-radius:16px; margin:20px 0; overflow:hidden; display:flex; align-items:center; justify-content:center;}
+  .lab-box{
+    width:70px; height:70px; background:linear-gradient(145deg,#4a3d26,#2c2312); border:2px solid var(--border);
+    border-radius:10px; position:relative; transition:transform 1.4s cubic-bezier(.2,.8,.2,1);
+  }
+  .lab-arrow{position:absolute; top:50%; height:6px; border-radius:3px; transform:translateY(-50%);}
+  .arrow-left{right:100%; background:var(--blue);}
+  .arrow-right{left:100%; background:var(--action);}
+  .lab-arrow::after{
+    content:''; position:absolute; top:50%; width:0; height:0; transform:translateY(-50%);
+    border-top:9px solid transparent; border-bottom:9px solid transparent;
+  }
+  .arrow-left::after{left:-14px; border-right:14px solid var(--blue);}
+  .arrow-right::after{right:-14px; border-left:14px solid var(--action);}
+  .lab-controls{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:10px;}
+  @media(max-width:600px){.lab-controls{grid-template-columns:1fr;}}
+  .force-control{background:var(--surface-2); border:1px solid var(--border); border-radius:14px; padding:16px;}
+  .force-control h4{margin:0 0 10px; font-family:'IBM Plex Mono',monospace; font-size:0.85rem;}
+  .force-control.left h4{color:var(--blue);}
+  .force-control.right h4{color:var(--action);}
+  .net-readout{
+    margin-top:18px; text-align:center; font-family:'IBM Plex Mono',monospace; font-size:1.3rem; color:var(--spark);
+    padding:14px; border:1px dashed var(--spark); border-radius:14px;
+  }
+
+  /* ---------- FRICTION RACE ---------- */
+  .surface-picker{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;}
+  .surf-btn{
+    flex:1; min-width:140px; padding:12px; border-radius:12px; border:1px solid var(--border);
+    background:var(--surface-2); color:var(--text); cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:0.82rem;
+    text-align:center; transition:.2s;
+  }
+  .surf-btn.active{border-color:var(--reaction); background:rgba(56,214,192,0.1); color:var(--reaction);}
+  .race-track{position:relative; height:90px; margin-top:20px; border-radius:14px; overflow:hidden; background:var(--surface-2);}
+  .race-track .lane{position:absolute; inset:0; opacity:0.5;}
+  #coinStack{
+    position:absolute; top:50%; left:4%; transform:translateY(-50%); width:26px; height:26px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #ffe27a, #c99a2e); box-shadow:0 0 10px rgba(255,210,63,0.5);
+  }
+  .race-readout{display:flex; justify-content:space-between; margin-top:12px; font-family:'IBM Plex Mono',monospace; font-size:0.85rem; color:var(--muted);}
+
+  /* ---------- NEWTON LAW CARDS ---------- */
+  .law-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:28px; margin-top:20px;
+  }
+  .law-num{
+    display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:50%;
+    background:var(--spark); color:#1a0f06; font-family:'Bebas Neue',sans-serif; font-size:1.4rem; margin-bottom:12px;
+  }
+  .law-statement{
+    font-size:1.1rem; color:#fff; border-left:3px solid var(--spark); padding-left:16px; margin:14px 0;
+  }
+
+  /* ---------- F=ma CALCULATOR ---------- */
+  .fma-box{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:28px; margin-top:20px;}
+  .fma-eq{
+    text-align:center; font-family:'IBM Plex Mono',monospace; font-size:2rem; color:var(--spark); margin-bottom:20px;
+  }
+  .fma-sliders{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media(max-width:600px){.fma-sliders{grid-template-columns:1fr;}}
+  .fma-sliders label{display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:6px; font-family:'IBM Plex Mono',monospace;}
+  .fma-result{margin-top:20px; text-align:center;}
+  .fma-ball-track{position:relative; height:50px; background:var(--surface-2); border-radius:999px; margin-top:20px; overflow:hidden;}
+  #fmaBall{position:absolute; top:50%; left:4%; width:24px; height:24px; border-radius:50%; background:var(--action); transform:translateY(-50%); box-shadow:0 0 10px rgba(255,122,69,0.6);}
+
+  /* ---------- THIRD LAW GALLERY ---------- */
+  .pair-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:20px;}
+  .pair-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px; cursor:pointer; transition:.2s;
+  }
+  .pair-card:hover{border-color:var(--action);}
+  .pair-card .emoji{font-size:2rem;}
+  .pair-card strong{display:block; margin-top:8px; color:#fff; font-size:0.95rem;}
+  .pair-detail{display:none; margin-top:10px; font-size:0.82rem; color:var(--muted);}
+  .pair-detail .arrows{display:flex; justify-content:space-between; margin:10px 0; font-family:'IBM Plex Mono',monospace; font-size:0.78rem;}
+  .pair-detail .arrows span:first-child{color:var(--blue);}
+  .pair-detail .arrows span:last-child{color:var(--action);}
+  .pair-card.open .pair-detail{display:block;}
+
+  /* ---------- EXAMPLES ACCORDION ---------- */
+  .example{background:var(--surface); border:1px solid var(--border); border-radius:14px; margin-bottom:10px; overflow:hidden;}
+  .example-q{padding:16px 18px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-size:0.92rem;}
+  .example-q strong{color:var(--spark); margin-right:8px; font-family:'IBM Plex Mono',monospace;}
+  .example-a{display:none; padding:0 18px 18px; font-size:0.88rem; color:var(--muted); border-top:1px dashed var(--border); padding-top:14px;}
+  .example.open .example-a{display:block;}
+  .example-toggle{font-family:'IBM Plex Mono',monospace; color:var(--muted);}
+
+  /* ---------- PONDER ---------- */
+  .ponder{background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:18px 20px; margin-bottom:12px;}
+  .ponder p{margin:0 0 10px; font-size:0.95rem;}
+  .reveal-btn{
+    font-family:'IBM Plex Mono',monospace; font-size:0.75rem; background:none; border:1px solid var(--border);
+    color:var(--reaction); padding:6px 12px; border-radius:999px; cursor:pointer;
+  }
+  .reveal-ans{display:none; margin-top:10px; padding-top:10px; border-top:1px dashed var(--border); font-size:0.88rem; color:var(--reaction);}
+  .reveal-ans.show{display:block;}
+
+  /* ---------- QUIZ ---------- */
+  .quiz-card{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:20px; margin-bottom:14px;}
+  .quiz-q{font-weight:600; margin-bottom:12px; color:#fff;}
+  .quiz-opts{display:grid; gap:8px;}
+  .opt-btn{
+    text-align:left; background:var(--surface-2); border:1px solid var(--border); color:var(--text);
+    padding:10px 14px; border-radius:10px; cursor:pointer; font-size:0.9rem; font-family:'Inter',sans-serif;
+  }
+  .opt-btn.correct{border-color:var(--reaction); background:rgba(56,214,192,0.12); color:var(--reaction);}
+  .opt-btn.wrong{border-color:var(--action); background:rgba(255,122,69,0.12); color:var(--action);}
+  #quizScore{text-align:center; font-family:'IBM Plex Mono',monospace; font-size:1.1rem; color:var(--spark); padding:14px; border:1px dashed var(--spark); border-radius:14px;}
+
+  .dyk{
+    background:linear-gradient(135deg, rgba(255,210,63,0.08), rgba(56,214,192,0.05));
+    border:1px solid rgba(255,210,63,0.25); border-radius:16px; padding:18px 20px;
+    font-size:0.92rem; color:#f0e6cf; margin-top:14px;
+  }
+  .dyk b{color:var(--spark);}
+
+  .summary-list{list-style:none; padding:0; margin:0; display:grid; gap:10px;}
+  .summary-list li{
+    background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:12px 16px;
+    font-size:0.92rem; color:var(--muted); display:flex; gap:10px; align-items:flex-start;
+  }
+  .summary-list li::before{content:'→'; color:var(--action); flex:0 0 auto; font-weight:700;}
+
+  footer{text-align:center; padding:40px 20px 60px; color:var(--muted); font-size:0.8rem;}
+  ::selection{background:var(--action); color:#1a0f06;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#concept">Force</a>
+  <a href="#balanced">Balanced</a>
+  <a href="#sandbox">Net Force Lab</a>
+  <a href="#friction">Friction</a>
+  <a href="#law1">1st Law</a>
+  <a href="#law2">2nd Law</a>
+  <a href="#law3">3rd Law</a>
+  <a href="#examples">Worked Examples</a>
+  <a href="#quiz">Quiz</a>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <svg class="hero-rig" viewBox="0 0 320 140">
+    <rect x="130" y="45" width="60" height="50" rx="8" fill="#4a3d26" stroke="#3c331f" stroke-width="2" style="animation:pushPull 1.6s ease-in-out infinite;"/>
+    <line x1="10" y1="70" x2="120" y2="70" stroke="#6fa8ff" stroke-width="6" style="animation:arrowPulse 1.6s ease-in-out infinite;"/>
+    <polygon points="120,60 140,70 120,80" fill="#6fa8ff" style="animation:arrowPulse 1.6s ease-in-out infinite;"/>
+    <line x1="310" y1="70" x2="200" y2="70" stroke="#ff7a45" stroke-width="6" style="animation:arrowPulse 1.6s ease-in-out infinite reverse;"/>
+    <polygon points="200,60 180,70 200,80" fill="#ff7a45" style="animation:arrowPulse 1.6s ease-in-out infinite reverse;"/>
+  </svg>
+  <h1>How Forces<br>Affect <span>Motion</span></h1>
+  <p>Nothing speeds up, slows down, turns, or changes shape without a push or a pull behind it. Let's find the hidden hand behind every motion around you.</p>
+  <div class="chip-row">
+    <span class="chip">Chapter 6 · Grade 9 Physics</span>
+    <span class="chip">Newton's Three Laws of Motion</span>
+  </div>
+  <div class="scroll-hint">scroll to explore ↓</div>
+</section>
+
+<!-- ================= CONCEPT OF FORCE ================= -->
+<section id="concept">
+  <span class="eyebrow">6.1 — The push, the pull</span>
+  <h2 class="title">What exactly is a force?</h2>
+  <p class="lead">A force can start an object moving, stop it, speed it up, slow it down, change its direction, or change its shape. Every time we describe a force, we always mention <b>which way</b> it's pushing or pulling — direction matters just as much as strength.</p>
+
+  <div class="force-examples">
+    <div class="force-ex"><div class="emoji">⚽</div><strong>Kicking a ball</strong><span>starts it moving from rest</span></div>
+    <div class="force-ex"><div class="emoji">🏏</div><strong>Striking a ball</strong><span>changes its direction</span></div>
+    <div class="force-ex"><div class="emoji">🍋</div><strong>Squeezing a lemon</strong><span>changes its shape</span></div>
+  </div>
+
+  <div class="unit-box">
+    <div class="unit-badge">N</div>
+    <div style="flex:1; min-width:220px;">
+      <p style="margin:0 0 6px; color:var(--muted); font-size:0.92rem;">Force is measured in <b>newtons</b> (small "n", symbol capital <b>N</b>) using a <b>spring balance</b> — the same tool you've used to measure weight.</p>
+      <div class="scale-track"><div class="scale-fill" style="width:38%"></div></div>
+      <div class="scale-labels"><span>yoctonewton (10⁻²⁴ N)<br>smallest ever measured</span><span>millinewton (10⁻³ N)<br>a light touch</span><span style="text-align:right">large forces<br>(rockets, engines)</span></div>
+    </div>
+  </div>
+  <div class="dyk">✏️ <b>Spelling rule:</b> When a unit is named after a person, the unit itself stays lowercase ("newton"), but its symbol is capitalised: <b>N</b>, not n.</div>
+</section>
+
+<!-- ================= BALANCED / UNBALANCED ================= -->
+<section id="balanced">
+  <span class="eyebrow">6.2 — Tug of war physics</span>
+  <h2 class="title">Balanced vs unbalanced forces</h2>
+  <p class="lead">Drag both sliders to set how hard each team pulls. Watch what the rope does.</p>
+
+  <div class="tug-stage">
+    <div class="team-row">
+      <div class="team-control">
+        <label><span>🔵 Team Blue pulls left</span><span id="teamAVal" class="mono">50 N</span></label>
+        <input type="range" id="teamA" min="0" max="100" value="50" oninput="updateTug()">
+      </div>
+      <div class="team-control">
+        <label><span>🟠 Team Orange pulls right</span><span id="teamBVal" class="mono">50 N</span></label>
+        <input type="range" id="teamB" min="0" max="100" value="50" oninput="updateTug()">
+      </div>
+    </div>
+    <div class="rope-track">
+      <div class="rope-line"></div>
+      <div class="rope-fill" id="ropeFill"></div>
+    </div>
+    <div class="tug-result balanced" id="tugResult">Balanced — net force = 0 N. The rope doesn't move.</div>
+  </div>
+  <div class="dyk">🔎 <b>Rule of thumb:</b> Opposite forces of equal size → <b>balanced</b>, nothing changes. Opposite forces of unequal size → <b>unbalanced</b>, and a non-zero <b>net force</b> pushes things toward the stronger side.</div>
+</section>
+
+<!-- ================= NET FORCE SANDBOX (SIGNATURE) ================= -->
+<section id="sandbox">
+  <span class="eyebrow">Example 6.1 — try it yourself</span>
+  <h2 class="title">The net force sandbox</h2>
+  <p class="lead">Set two forces acting on the block — same direction or opposite — and press <b>Apply</b> to see it move exactly as the net force dictates.</p>
+
+  <div class="lab">
+    <div class="lab-controls">
+      <div class="force-control left">
+        <h4>← FORCE A (pushes LEFT)</h4>
+        <label style="display:flex;justify-content:space-between;font-size:0.82rem;"><span>Magnitude</span><span id="fAVal">10 N</span></label>
+        <input type="range" id="forceA" min="0" max="20" value="10" oninput="updateSandbox()">
+      </div>
+      <div class="force-control right">
+        <h4>FORCE B (pushes RIGHT) →</h4>
+        <label style="display:flex;justify-content:space-between;font-size:0.82rem;"><span>Magnitude</span><span id="fBVal">6 N</span></label>
+        <input type="range" id="forceB" min="0" max="20" value="6" oninput="updateSandbox()">
+      </div>
+    </div>
+    <div class="lab-stage">
+      <div class="lab-box" id="labBox">
+        <div class="lab-arrow arrow-left" id="arrowLeft"></div>
+        <div class="lab-arrow arrow-right" id="arrowRight"></div>
+      </div>
+    </div>
+    <div style="text-align:center;">
+      <button class="btn" onclick="applySandbox()">▶ Apply forces</button>
+      <button class="btn ghost" onclick="resetSandbox()">⟲ Reset</button>
+    </div>
+    <div class="net-readout" id="netReadout">Net force = 4 N → acting RIGHT</div>
+  </div>
+</section>
+
+<!-- ================= FRICTION ================= -->
+<section id="friction">
+  <span class="eyebrow">6.3 — Activity 6.1 & 6.2, remixed</span>
+  <h2 class="title">The force of friction</h2>
+  <p class="lead">Friction always opposes motion. Pick a surface below and flick the coin stack — notice how far it slides before friction brings it to rest.</p>
+
+  <div class="surface-picker">
+    <button class="surf-btn active" data-mu="0.35" data-force="3.2" onclick="pickSurface(this)">🪵 Wooden table</button>
+    <button class="surf-btn" data-mu="0.22" data-force="2.1" onclick="pickSurface(this)">🧴 Laminated top</button>
+    <button class="surf-btn" data-mu="0.10" data-force="0.9" onclick="pickSurface(this)">✨ Polished marble</button>
+  </div>
+
+  <div class="race-track">
+    <div id="coinStack"></div>
+  </div>
+  <div class="race-readout">
+    <span id="frictionForceLabel">Approx. friction force: 3.2 N</span>
+    <span id="distanceLabel">Distance travelled: short</span>
+  </div>
+  <div style="text-align:center; margin-top:14px;"><button class="btn alt" onclick="runFriction()">🪙 Flick the coin stack</button></div>
+
+  <div class="dyk">💡 <b>Why it matters:</b> A smaller friction force means the object keeps its velocity for longer and travels farther — exactly what the spring balance readings in Activity 6.2 confirm.</div>
+</section>
+
+<!-- ================= NEWTON'S FIRST LAW ================= -->
+<section id="law1">
+  <span class="eyebrow">6.4</span>
+  <h2 class="title">Newton's First Law — the law of inertia</h2>
+  <div class="law-card">
+    <div class="law-num">1</div>
+    <p class="law-statement">"An object at rest remains at rest, and an object in motion continues to move with a constant velocity, unless a net force acts upon it."</p>
+    <p style="color:var(--muted); font-size:0.92rem;">Isaac Newton used the word <b>inertia</b> for this tendency of objects to resist a change in their state of rest or motion. Interestingly, it was <b>Galileo Galilei</b>, over a century earlier, who first argued through thought experiments that a moving object needs no force to keep moving at constant velocity — only friction (which is everywhere in daily life) makes it seem otherwise.</p>
+  </div>
+  <div class="dyk">🤔 <b>Think about it:</b> If the net force on an object is exactly zero, its position-time graph is either flat (at rest) or a straight sloped line (constant velocity) — never curved.</div>
+</section>
+
+<!-- ================= NEWTON'S SECOND LAW ================= -->
+<section id="law2">
+  <span class="eyebrow">6.5</span>
+  <h2 class="title">Newton's Second Law — force, mass & acceleration</h2>
+  <div class="law-card">
+    <div class="law-num">2</div>
+    <p class="law-statement">"When a net force acts on an object, it accelerates in the direction of the net force. The acceleration is proportional to the net force and inversely proportional to the object's mass."</p>
+  </div>
+
+  <div class="fma-box">
+    <div class="fma-eq">F = m × a</div>
+    <div class="fma-sliders">
+      <div>
+        <label><span>Force (F)</span><span id="fmaFVal">10 N</span></label>
+        <input type="range" id="fmaF" min="1" max="100" value="10" oninput="updateFma()">
+      </div>
+      <div>
+        <label><span>Mass (m)</span><span id="fmaMVal">5 kg</span></label>
+        <input type="range" id="fmaM" min="1" max="50" value="5" oninput="updateFma()">
+      </div>
+    </div>
+    <div class="fma-result mono" id="fmaResult" style="font-size:1.3rem;color:var(--spark);">a = 2.00 m/s²</div>
+    <div class="fma-ball-track"><div id="fmaBall"></div></div>
+    <div style="text-align:center;"><button class="btn" onclick="runFma()">▶ Launch the ball</button></div>
+  </div>
+
+  <div class="grid grid-2" style="margin-top:20px;">
+    <div class="card">
+      <h3 style="margin-top:0;color:#fff;">Defining the newton</h3>
+      <p style="color:var(--muted); font-size:0.9rem;">1 N is the force needed to give a 1 kg object an acceleration of 1 m/s². So F = (1 kg)×(1 m/s²) = 1 N.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0;color:#fff;">Weight = mg</h3>
+      <p style="color:var(--muted); font-size:0.9rem;">The gravitational force on an object is F = mg, where g ≈ 9.8 m/s² near Earth's surface (often rounded to 10 m/s² for quick estimates).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NEWTON'S THIRD LAW ================= -->
+<section id="law3">
+  <span class="eyebrow">6.6</span>
+  <h2 class="title">Newton's Third Law — action & reaction</h2>
+  <div class="law-card">
+    <div class="law-num">3</div>
+    <p class="law-statement">"Whenever one object exerts a force on a second object, the second object simultaneously exerts an equal and opposite force on the first."</p>
+    <p style="color:var(--muted); font-size:0.92rem;">These paired forces act on <b>two different objects</b> — so they never cancel each other out. Tap a card to see the pair.</p>
+  </div>
+
+  <div class="pair-grid" id="pairGrid"></div>
+  <div class="dyk">🚀 <b>Real mission:</b> Chandrayaan-3's Vikram lander fired its engine in the direction of its own motion to slow itself down — the exhaust gases pushed back against the lander, enabling a soft landing near the Moon's south pole.</div>
+</section>
+
+<!-- ================= SYSTEM OF OBJECTS (brief) ================= -->
+<section id="system">
+  <span class="eyebrow">6.7 — Zooming out</span>
+  <h2 class="title">Treating connected objects as one system</h2>
+  <p class="lead">Two boxes tied by a string and pulled by a force <span class="mono">F</span>? Instead of analysing each box separately, treat them as a single system of combined mass. The internal tension force cancels out, leaving:</p>
+  <div class="fma-eq" style="margin-top:14px;">a = F ÷ (m₁ + m₂)</div>
+  <div class="dyk">🚶 <b>Everyday version:</b> While walking, your arms and legs move in complicated ways — yet your overall motion can be studied by treating your whole body as one object. Physics gets simpler when you stop looking at the parts and look at the whole.</div>
+</section>
+
+<!-- ================= WORKED EXAMPLES ================= -->
+<section id="examples">
+  <span class="eyebrow">From the textbook</span>
+  <h2 class="title">Worked examples</h2>
+  <p class="lead">Tap a question to reveal the full solution.</p>
+  <div id="exampleList"></div>
+</section>
+
+<!-- ================= PAUSE AND PONDER ================= -->
+<section id="ponder">
+  <span class="eyebrow">Think it through</span>
+  <h2 class="title">Pause &amp; ponder</h2>
+  <div id="ponderList"></div>
+</section>
+
+<!-- ================= QUIZ ================= -->
+<section id="quiz">
+  <span class="eyebrow">Test yourself</span>
+  <h2 class="title">Quick quiz</h2>
+  <p class="lead">Seven questions. Click an answer to check it.</p>
+  <div id="quizList"></div>
+  <div id="quizScore">Score: 0 / 7</div>
+</section>
+
+<!-- ================= SUMMARY ================= -->
+<section id="summary">
+  <span class="eyebrow">At a glance</span>
+  <h2 class="title">Chapter summary</h2>
+  <ul class="summary-list" id="summaryList"></ul>
+</section>
+
+<footer>Chapter 6 · How Forces Affect Motion · Grade 9 Physics study notes</footer>
+
+<script>
+/* ================= TUG OF WAR ================= */
+function updateTug(){
+  const a = parseInt(document.getElementById('teamA').value);
+  const b = parseInt(document.getElementById('teamB').value);
+  document.getElementById('teamAVal').textContent = a + ' N';
+  document.getElementById('teamBVal').textContent = b + ' N';
+  const net = b - a; // positive => moves right (orange)
+  const shiftPct = Math.max(-40, Math.min(40, net/2));
+  document.getElementById('ropeFill').style.left = (50+shiftPct) + '%';
+  const result = document.getElementById('tugResult');
+  if(net === 0){
+    result.textContent = 'Balanced — net force = 0 N. The rope doesn\'t move.';
+    result.className = 'tug-result balanced';
+  } else {
+    const dir = net > 0 ? 'RIGHT (Team Orange)' : 'LEFT (Team Blue)';
+    result.textContent = `Unbalanced — net force = ${Math.abs(net)} N toward the ${dir}. The rope moves!`;
+    result.className = 'tug-result unbalanced';
+  }
+}
+updateTug();
+
+/* ================= NET FORCE SANDBOX ================= */
+function updateSandbox(){
+  const a = parseInt(document.getElementById('forceA').value);
+  const b = parseInt(document.getElementById('forceB').value);
+  document.getElementById('fAVal').textContent = a + ' N';
+  document.getElementById('fBVal').textContent = b + ' N';
+  document.getElementById('arrowLeft').style.width = (a*4) + 'px';
+  document.getElementById('arrowRight').style.width = (b*4) + 'px';
+  const net = b - a;
+  const readout = document.getElementById('netReadout');
+  if(net === 0){
+    readout.textContent = `Net force = 0 N → forces are balanced, the block stays put.`;
+  } else {
+    readout.textContent = `Net force = ${Math.abs(net)} N → acting ${net>0?'RIGHT':'LEFT'}`;
+  }
+}
+function applySandbox(){
+  const a = parseInt(document.getElementById('forceA').value);
+  const b = parseInt(document.getElementById('forceB').value);
+  const net = b - a;
+  const box = document.getElementById('labBox');
+  const dist = Math.max(-90, Math.min(90, net*4));
+  box.style.transform = `translateX(${dist}px)`;
+}
+function resetSandbox(){
+  document.getElementById('labBox').style.transform = 'translateX(0px)';
+}
+updateSandbox();
+
+/* ================= FRICTION RACE ================= */
+let currentMu = {mu:0.35, force:3.2};
+function pickSurface(btn){
+  document.querySelectorAll('.surf-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  currentMu = {mu:parseFloat(btn.dataset.mu), force:parseFloat(btn.dataset.force)};
+  document.getElementById('frictionForceLabel').textContent = `Approx. friction force: ${currentMu.force} N`;
+}
+function runFriction(){
+  const coin = document.getElementById('coinStack');
+  const track = document.querySelector('.race-track');
+  coin.style.transition = 'none';
+  coin.style.left = '4%';
+  void coin.offsetWidth;
+  // less friction (mu) -> travels further
+  const maxTravel = 90; // percent
+  const travelPct = Math.min(maxTravel, (0.4/currentMu.mu)*22);
+  const duration = 0.6 + (travelPct/40);
+  coin.style.transition = `left ${duration}s cubic-bezier(.15,.7,.3,1)`;
+  coin.style.left = travelPct + '%';
+  const label = travelPct > 60 ? 'long — low friction!' : travelPct > 35 ? 'medium' : 'short — high friction';
+  document.getElementById('distanceLabel').textContent = 'Distance travelled: ' + label;
+}
+
+/* ================= F = ma CALCULATOR ================= */
+function updateFma(){
+  const F = parseInt(document.getElementById('fmaF').value);
+  const m = parseInt(document.getElementById('fmaM').value);
+  document.getElementById('fmaFVal').textContent = F + ' N';
+  document.getElementById('fmaMVal').textContent = m + ' kg';
+  const a = F/m;
+  document.getElementById('fmaResult').textContent = `a = ${a.toFixed(2)} m/s²`;
+}
+function runFma(){
+  const F = parseInt(document.getElementById('fmaF').value);
+  const m = parseInt(document.getElementById('fmaM').value);
+  const a = F/m;
+  const ball = document.getElementById('fmaBall');
+  ball.style.transition = 'none';
+  ball.style.left = '4%';
+  void ball.offsetWidth;
+  const duration = Math.max(0.5, Math.min(3.5, 6/a));
+  ball.style.transition = `left ${duration}s cubic-bezier(.3,.6,.2,1)`;
+  ball.style.left = '92%';
+}
+updateFma();
+
+/* ================= THIRD LAW GALLERY ================= */
+const pairs = [
+  {icon:'🎈', name:'Balloon & escaping air', a:'Balloon pushes air out', b:'Air pushes balloon forward'},
+  {icon:'🚀', name:'Rocket launch', a:'Rocket engine pushes gas down', b:'Gas pushes rocket up'},
+  {icon:'🛶', name:'Rowing a canoe', a:'Paddle pushes water backward', b:'Water pushes paddle (& canoe) forward'},
+  {icon:'🚴', name:'Riding a bicycle', a:'Feet push the ground backward', b:'Ground pushes feet forward'},
+  {icon:'🌴', name:'Climbing a tree', a:'Legs push the trunk down', b:'Friction pushes the climber up'},
+  {icon:'⚖️', name:'Two spring balances', a:'You pull balance A', b:'Balance A pulls back equally'},
+];
+const pairGrid = document.getElementById('pairGrid');
+pairs.forEach(p=>{
+  const c = document.createElement('div');
+  c.className = 'pair-card';
+  c.innerHTML = `<div class="emoji">${p.icon}</div><strong>${p.name}</strong>
+    <div class="pair-detail"><div class="arrows"><span>← ${p.a}</span></div><div class="arrows"><span></span><span>${p.b} →</span></div></div>`;
+  c.onclick = ()=>c.classList.toggle('open');
+  pairGrid.appendChild(c);
+});
+
+/* ================= WORKED EXAMPLES ================= */
+const examples = [
+  {q:"Example 6.1 — Two forces of 10 N and 6 N act on a block. Find the net force when they act (a) same direction, (b) opposite, larger force forward, (c) opposite, larger force backward.",
+   a:"(a) Net force = 10 + 6 = <b>16 N</b>, toward the right.<br>(b) Net force = 10 − 6 = <b>4 N</b>, toward the right (direction of the larger force).<br>(c) Net force = 10 − 6 = <b>4 N</b>, toward the left."},
+  {q:"Example 6.2 — A person pushes a moving box forward with a force exactly equal to friction. Does the box keep moving or stop?",
+   a:"The two forces are equal and opposite, so they balance — net force = 0. By Newton's first law, the box <b>continues moving at constant velocity</b> (it neither speeds up nor stops)."},
+  {q:"Example 6.4 — A weightlifter holds a 30 kg barbell (bar + weights) steady. How much force is she applying?",
+   a:"Gravitational force = mg = 30 × 9.8 = <b>294 N</b> downward. To keep it steady, she applies an equal <b>294 N upward</b>."},
+  {q:"Example 6.5 — A 25 kg block needs 50 N to overcome friction. Find displacement in 2 s if pushed with (i) 50 N, (ii) 55 N.",
+   a:"(i) Applied force = friction → net force = 0 → block stays stationary, displacement = <b>0 m</b>.<br>(ii) Net force = 55 − 50 = 5 N. a = F/m = 5/25 = 0.2 m/s². Using s = ut + ½at² = 0 + ½(0.2)(2²) = <b>0.4 m</b> forward."},
+  {q:"Example 6.6 — A 1500 kg car speeds up from 0 to 10 m/s in 5 s, cruises at 10 m/s for 5 s, then slows to 0 in 5 s. Find the force in each phase.",
+   a:"Phase 1 (0–5s): a = (10−0)/5 = 2 m/s² → F = 1500×2 = <b>3000 N forward</b>.<br>Phase 2 (5–10s): constant velocity → a = 0 → F = <b>0 N</b>.<br>Phase 3 (10–15s): a = (0−10)/5 = −2 m/s² → F = 1500×(−2) = <b>−3000 N</b> (i.e., 3000 N backward, opposing motion)."},
+  {q:"Example 6.7 — The Earth and a falling fruit pull on each other with equal gravitational forces. Why does the fruit move toward the Earth, but the Earth doesn't visibly move toward the fruit?",
+   a:"Both forces are equal in magnitude (Newton's third law), but a = F/m. The Earth's mass is enormous compared to the fruit's, so the Earth's resulting acceleration is <b>too tiny to notice</b>, while the fruit's acceleration is large enough to see it fall."},
+  {q:"Example 6.8 — A 0.1 kg bullet fired from a 5 kg gun with a force of 2 N. Find the initial acceleration of both.",
+   a:"By Newton's third law, the recoil force on the gun is also 2 N.<br>Gun: a = F/m = 2/5 = <b>0.4 m/s²</b>.<br>Bullet: a = F/m = 2/0.1 = <b>20 m/s²</b>.<br>Equal forces, very different accelerations — because the masses differ."},
+];
+const exList = document.getElementById('exampleList');
+examples.forEach((ex,i)=>{
+  const el = document.createElement('div');
+  el.className = 'example';
+  el.innerHTML = `<div class="example-q" onclick="this.parentElement.classList.toggle('open')"><span><strong>${i+1}.</strong> ${ex.q}</span><span class="example-toggle">＋</span></div>
+    <div class="example-a">${ex.a}</div>`;
+  exList.appendChild(el);
+});
+
+/* ================= PAUSE & PONDER ================= */
+const ponderQs = [
+  {q:"A weightlifter holds a barbell steady overhead. List the two forces acting on the barbell — are they balanced?", a:"Gravitational force (weight, downward) and the upward force applied by the weightlifter's arms. Since the barbell stays steady (constant zero velocity), these two forces are balanced."},
+  {q:"Once a box starts moving and you stop pushing it, why does it eventually stop instead of moving forever?", a:"Friction between the box and the floor continues to act opposite to the motion even after you stop pushing. This unbalanced force decelerates the box until it comes to rest."},
+  {q:"A toy car of mass 100 g moves at a constant velocity of 0.5 m/s. What is the net force acting on it?", a:"Constant velocity means zero acceleration. By Newton's second law (F = ma), the net force must be <b>0 N</b>."},
+  {q:"Why does a fireperson sometimes struggle to hold a hose issuing water at high speed?", a:"By Newton's third law, as the hose pushes the water forward with great force, the water pushes back on the hose (and the person) with an equal and opposite force, which can be strong enough to push the person backward."},
+];
+const ponderList = document.getElementById('ponderList');
+ponderQs.forEach((item,i)=>{
+  const box = document.createElement('div');
+  box.className = 'ponder';
+  box.innerHTML = `<p><b>Q${i+1}.</b> ${item.q}</p>
+    <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal answer</button>
+    <div class="reveal-ans">${item.a}</div>`;
+  ponderList.appendChild(box);
+});
+
+/* ================= QUIZ ================= */
+const quizData = [
+  {q:"What is the SI unit of force?", opts:["Joule","Newton","Pascal","Watt"], correct:1},
+  {q:"Two forces of 10 N and 6 N act in the SAME direction on a block. What is the net force?", opts:["4 N","16 N","60 N","10 N"], correct:1},
+  {q:"Newton's First Law is also called the law of...", opts:["Gravity","Momentum","Inertia","Friction"], correct:2},
+  {q:"Which formula correctly expresses Newton's Second Law?", opts:["F = m + a","F = m/a","F = m × a","F = a/m"], correct:2},
+  {q:"If the force on an object stays the same but its mass doubles, its acceleration will...", opts:["Double","Stay the same","Halve","Become zero"], correct:2},
+  {q:"According to Newton's Third Law, action and reaction forces act on...", opts:["The same object","Two different objects","No object","Only moving objects"], correct:1},
+  {q:"A ball moves at a constant velocity across a frictionless floor. What is the net force acting on it?", opts:["Equal to its weight","Zero","Increasing with time","Equal to friction"], correct:1},
+];
+let score = 0;
+const quizList = document.getElementById('quizList');
+quizData.forEach((item,qi)=>{
+  const card = document.createElement('div');
+  card.className = 'quiz-card';
+  const optsHtml = item.opts.map((o,oi)=>`<button class="opt-btn" onclick="answerQuiz(${qi},${oi},this)">${o}</button>`).join('');
+  card.innerHTML = `<div class="quiz-q">${qi+1}. ${item.q}</div><div class="quiz-opts">${optsHtml}</div>`;
+  quizList.appendChild(card);
+});
+function answerQuiz(qi, oi, btn){
+  const item = quizData[qi];
+  const buttons = btn.parentElement.children;
+  if(btn.dataset.done) return;
+  [...buttons].forEach(b=>b.dataset.done=1);
+  if(oi === item.correct){
+    btn.classList.add('correct');
+    score++;
+  } else {
+    btn.classList.add('wrong');
+    buttons[item.correct].classList.add('correct');
+  }
+  document.getElementById('quizScore').textContent = `Score: ${score} / ${quizData.length}`;
+}
+
+/* ================= SUMMARY ================= */
+const summaryPoints = [
+  "A force can move a resting object, change speed/direction, or change shape — direction always matters.",
+  "The SI unit of force is the newton (N), measured using a spring balance.",
+  "Balanced forces (equal & opposite) produce no change in motion; unbalanced forces produce a non-zero net force.",
+  "Friction opposes the relative motion between two surfaces in contact, and depends on the nature of the surfaces.",
+  "Newton's First Law: an object at rest or in uniform motion stays that way unless acted on by a net force (law of inertia).",
+  "Newton's Second Law: F = ma — acceleration is proportional to net force and inversely proportional to mass.",
+  "1 newton = the force that gives a 1 kg mass an acceleration of 1 m/s².",
+  "Weight = mg, where g ≈ 9.8 m/s² near Earth's surface.",
+  "Newton's Third Law: every action force has an equal and opposite reaction force acting on a different object — so they never cancel.",
+  "Connected objects can be treated as a single system, ignoring internal forces and considering only external ones."
+];
+const sList = document.getElementById('summaryList');
+summaryPoints.forEach(pt=>{
+  const li = document.createElement('li');
+  li.textContent = pt;
+  sList.appendChild(li);
+});
+</script>
+</body>
+</html>

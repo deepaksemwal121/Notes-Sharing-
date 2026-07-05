@@ -1,51 +1,118 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Science Notes Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
 </head>
-<body>
 
-<header class="hero">
-  <h1>Science Notes Access Portal</h1>
-  <p>Scan QR codes from your worksheets to access topic-wise notes.</p>
-</header>
+<body data-theme="light">
 
-<section class="container">
-  <div class="card">
-    <h2>Class IX Science</h2>
-    <p>Professional topic-wise notes for students.</p>
-
-    <div class="topics">
-
-      <div class="topic-card">
-        <h3> Describing Motion Around Us</h3>
-        <p>Learn about Distance, Displacement,Speed, Velocity and Acceleration</p>
-        <a href="notes/motion.html" class="btn">Open Notes</a>
+  <header class="hero">
+    <div class="hero-content">
+      <div>
+        <span class="eyebrow">Class 9 Science</span>
+        <h1>Interactive Notes Portal</h1>
+        <p>Easy science notes, quick revision tools, and fun learning for motion, mixtures, and cells.</p>
       </div>
-
-      <div class="topic-card">
-        <h3>Exploring Mixtures and Their Separation</h3>
-        <p>Separation techniques, crystallisation, distillation and chromatography.</p>
-        <a href="notes/mixtures-separation.html" class="btn">Open Notes</a>
-      </div>
-
-       <div class="topic-card">
-        <h3>Cell: The Building Block of Life</h3>
-        <p>Learn about cells their development and different cell processes</p>
-        <a href="notes/cell_notes.html" class="btn">Open Notes</a>
-      </div>
-
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
     </div>
-  </div>
-</section>
+    <div class="hero-badges">
+      <span>Quick revision</span>
+      <span>Cool diagrams</span>
+      <span>Easy topic search</span>
+      <span>Study-friendly notes</span>
+    </div>
+  </header>
 
-<footer>
-  <p>Easy Accessible Notes Copyright 2026 Deepak Semwal</p>
-</footer>
+  <main class="container">
+    <section class="panel intro-panel">
+      <div class="panel-text">
+        <h2>Choose a topic and start studying</h2>
+        <p>Search topics, pick a lesson, and explore notes designed for class 9 learners.</p>
+      </div>
+      <div class="search-wrap">
+        <label for="topicSearch">Search topics</label>
+        <input id="topicSearch" type="search" placeholder="Type motion, mixtures, cells..." aria-label="Search topics">
+      </div>
+    </section>
+
+    <section class="grid topics" aria-label="Topic cards">
+      <article class="topic-card" data-title="Describing Motion Around Us"
+        data-description="Distance Displacement Speed Velocity Acceleration">
+        <div class="topic-icon">🏎️</div>
+        <h3>Motion Around Us</h3>
+        <p>Understand distance, speed, velocity, acceleration, and everyday physics examples.</p>
+        <a href="notes/motion.html" class="btn">Open Notes</a>
+      </article>
+
+      <article class="topic-card" data-title="Exploring Mixtures and Their Separation"
+        data-description="Separation techniques crystallisation distillation chromatography">
+        <div class="topic-icon">⚗️</div>
+        <h3>Mixtures & Separation</h3>
+        <p>Learn how mixtures are made and how we separate them using real-life experiments.</p>
+        <a href="notes/mixtures-separation.html" class="btn">Open Notes</a>
+      </article>
+
+      <article class="topic-card" data-title="Cell The Building Block of Life"
+        data-description="Cell organelles membrane nucleus cytoplasm osmosis">
+        <div class="topic-icon">🧬</div>
+        <h3>Cell Biology</h3>
+        <p>Explore the cell, its parts, and how living things work from tiny building blocks.</p>
+        <a href="notes/cell_notes.html" class="btn">Open Notes</a>
+      </article>
+
+      <article class="topic-card" data-title="How Forces Affect Motion"
+        data-description="Forces friction gravity motion">
+        <div class="topic-icon">💪</div>
+        <h3>Forces and Motion</h3>
+        <p>Understand how forces influence the motion of objects in our daily lives.</p>
+        <a href="notes/force.html" class="btn">Open Notes</a>
+      </article>
+
+      <article class="topic-card" data-title="Journey Inside an Atom"
+        data-description="Atomic structure protons neutrons electrons periodic table">
+        <div class="topic-icon">⚛️</div>
+        <h3>Journey Inside an Atom</h3>
+        <p>Discover the world of atoms, their structure, and the particles that make them up.</p>
+        <a href="notes/atom.html" class="btn">Open Notes</a>
+      </article>
+    </section>
+
+    <section class="panel quick-access-panel">
+      <h2>Quick quiz access</h2>
+      <p>Create quizzes for your class or let students explore available quizzes right away.</p>
+      <div class="quick-links">
+
+        <a href="quizzes.html" class="btn">View Quizzes</a>
+      </div>
+    </section>
+
+    <section class="panel interactive-panel">
+      <div class="interactive-card">
+        <div class="card-header">
+          <span>Study Tip</span>
+          <button id="newTip" class="mini-btn">New tip</button>
+        </div>
+        <p id="studyTip">Loading a helpful study tip...</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <p>Science Notes Portal • Class IX</p>
+      <p>Made friendly for fast learning and revision.</p>
+    </div>
+    <p>© 2026 Deepak Semwal</p>
+  </footer>
 
 </body>
+
 </html>

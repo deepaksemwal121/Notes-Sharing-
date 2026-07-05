@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidden Quiz Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="app.js"></script>
+</head>
+
+<body data-theme="light">
+    <main class="container">
+        <section class="panel quiz-panel">
+            <div>
+                <span class="eyebrow">Hidden quiz</span>
+                <h1>Subject &amp; topic quiz</h1>
+                <p>Use the hidden quiz page to load questions from JSON by subject and topic.</p>
+            </div>
+
+            <div class="quiz-controls">
+                <div>
+                    <label for="quizSubject">Subject</label>
+                    <select id="quizSubject"></select>
+                </div>
+
+                <div>
+                    <label for="quizTopic">Topic</label>
+                    <select id="quizTopic"></select>
+                </div>
+
+                <button id="startQuiz" class="btn">Load quiz</button>
+            </div>
+
+            <div class="quiz-play" hidden>
+                <div class="question-card">
+                    <p id="selectedInfo" class="quiz-question-text">Choose a subject and topic to begin.</p>
+                </div>
+                <div id="questionArea"></div>
+                <div class="quiz-controls">
+                    <button id="prevQuestion" class="mini-btn" type="button">Previous</button>
+                    <button id="nextQuestion" class="mini-btn" type="button">Next</button>
+                    <button id="resetQuiz" class="btn secondary" type="button">Reset</button>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

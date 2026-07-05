@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Quizzes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="app.js"></script>
+</head>
+
+<body data-theme="light">
+    <header class="page-header">
+        <div>
+            <span class="eyebrow">Student page</span>
+            <h1>Available Quizzes</h1>
+            <p>Open a quiz and test your knowledge.</p>
+        </div>
+        <a href="index.html" class="btn secondary">Back to Home</a>
+    </header>
+
+    <main class="container quiz-player">
+        <section class="quiz-card">
+            <h2>All quizzes</h2>
+            <div class="import-actions">
+                <button id="loadFolderBtn" class="btn" type="button">Load quizzes from folder</button>
+            </div>
+            <p id="folderStatus" class="helper-text" style="margin-top: 10px;"></p>
+            <div id="quizList" class="quiz-list"></div>
+        </section>
+
+        <section class="quiz-card" id="quizPlayerSection" hidden>
+            <h2 id="playerTitle">Quiz</h2>
+            <div id="playerContent"></div>
+        </section>
+    </main>
+</body>
+
+</html>
