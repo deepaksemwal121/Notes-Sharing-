@@ -1,0 +1,18 @@
+{
+  "title": "Motion Basics",
+  "subject": "Physics",
+  "topic": "Motion",
+  "level": "Easy",
+  "questions": [
+    {
+      "question": "What is speed?",
+      "options": ["Distance divided by time", "Time divided by distance", "Distance multiplied by time", "None"],
+      "answer": "Distance divided by time"
+    },
+    {
+      "question": "Which unit is used for speed?",
+      "options": ["m/s", "kg", "N", "J"],
+      "answer": "m/s"
+    }
+  ]
+}

@@ -1,3 +1,10 @@
 {
-  "quizzes": []
+  "quizzes": [
+    {
+      "title": "JOurney Inside an Atom",
+      "subject": "Chemistry",
+      "topic": "Atomic Structure",
+      "file": "atom.json"
+    }
+  ]
 }
